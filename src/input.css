@@ -1,0 +1,35 @@
+@import "tailwindcss";
+
+.floor-plan-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-rows: repeat(3, minmax(0, 1fr));
+  grid-template-areas:
+    'conference . servers security'
+    'reception . . .'
+    'reception  . staff vault'
+}
+
+.room-btn.conference {
+  grid-area: conference;
+}
+
+.room-btn.servers {
+  grid-area: servers;
+}
+
+.room-btn.security {
+  grid-area: security;
+}
+
+.room-btn.reception {
+  grid-area: reception;
+}
+
+.room-btn.staff {
+  grid-area: staff;
+}
+
+.room-btn.vault {
+  grid-area: vault;
+}
