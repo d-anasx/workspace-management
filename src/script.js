@@ -1,7 +1,7 @@
 import { validateInput } from "./support/validation.js";
 
 let workers = [];
-let idCounter = 0;
+let idCounter = 1;
 let idToModify ;
 let workerForm = document.querySelector('#workerForm');
 let pictureInput = document.querySelector('#worker_photo');
@@ -48,6 +48,7 @@ function renderWorkers(){
 
 //function that handle the submit of the form
 function submitWorkerData(e,id = null){
+  console.log(id)
     e.preventDefault()
     
     let personalInputs = workerForm.querySelectorAll(".personal");
@@ -88,13 +89,34 @@ function submitWorkerData(e,id = null){
             }
     })
     if(isValidate){
+      if(id){
+        modifyoldWorker(id,workerObject,experiences)
+    }
+    else{
+      addNewWorker(workerObject , experiences)
+    }
+
+    //cleanup
+    idToModify = null;
+    workerForm.reset();
+    document.getElementById("workerModal").close();
+    renderWorkers();
+    
+  }
+}
+
+function addNewWorker(workerObject, experiences){
         workerObject.id = idCounter++;
         workerObject.experiences = experiences;
         workers.push(workerObject);
-        workerForm.reset();
-        document.getElementById("workerModal").close();
-        renderWorkers();
-    }
+}
+
+function modifyoldWorker(id, workerObject, experiences){
+  let index = workers.findIndex(w => w.id === id);
+            workerObject.id = id;
+            workerObject.experiences = experiences;
+            workers[index] = workerObject;
+      
 }
 
 //function that handle the preview of the picture
