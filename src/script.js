@@ -7,10 +7,11 @@ let workerForm = document.querySelector('#workerForm');
 let pictureInput = document.querySelector('#worker_photo');
 let addExpButton = document.querySelector('#addExp');
 let addWorkerButton = document.querySelector('#addWorkerBtn');
-workerForm.addEventListener('submit',(e)=>submitWorkerData(e,2));
+
+workerForm.addEventListener('submit',(e)=>submitWorkerData(e,idToModify));
 pictureInput.addEventListener('input',picturePreview);
 addExpButton.addEventListener("click",addExperience)
-addWorkerButton.addEventListener("click",fillWorkerForm)
+window.fillWorkerForm = fillWorkerForm;
 
 
 
@@ -32,12 +33,17 @@ function renderWorkers(){
               <h2 class="font-semibold text-sm">${worker.name}</h2>
               <p class="text-gray-500 text-xs">${worker.role}</p>
             </div>
-            <button class="font-medium">
+            <button command="show-modal"
+                    commandfor="workerModal" class="font-medium"
+                    id="modifyButton"
+                    onclick="window.fillWorkerForm('${worker.id}');">
             <iconify-icon class="text-green-600" icon="solar:pen-bold-duotone" width="24" height="24"></iconify-icon>
             </button>
           </div>
-    `;;
+    `;
     })
+    
+    
 }
 
 //function that handle the submit of the form
@@ -94,7 +100,6 @@ function submitWorkerData(e,id = null){
 //function that handle the preview of the picture
 function picturePreview(e){
     document.querySelector("#picture").src = e.target.value
-    console.log(e)
 }
 
 
@@ -127,8 +132,33 @@ function addExperience(){
 }
 
 
-function fillWorkerForm(){
-        //filing form if id not null and modifying with submit function
+function fillWorkerForm(workerId) {
+    idToModify = parseInt(workerId);
+    let worker = workers.find(w => w.id === idToModify);
+
+    workerForm.querySelectorAll(".personal").forEach(input => {
+        input.value = worker[input.name] || "";
+    });
+
+
+    if (worker.url) {
+        document.querySelector("#picture").src = worker.url;
+        pictureInput.value = worker.url;
+    }
+
+    let exp_container = document.querySelector('.experiences-container');
+    exp_container.innerHTML = "";
+
+    worker.experiences.forEach(exp => {
+        addExperience(); 
+        let lastBlock = exp_container.lastElementChild;
+
+        lastBlock.querySelector("[name='company']").value = exp.company;
+        lastBlock.querySelector("[name='expRole']").value = exp.expRole;
+        lastBlock.querySelector("[name='from']").value = exp.from;
+        lastBlock.querySelector("[name='to']").value = exp.to;
+    });
 }
+
 
 
