@@ -7,33 +7,28 @@
     <link rel="stylesheet" href="output.css" />
   </head>
   <body class="bg-gray-100">
-    <div class="flex h-screen">
-      <aside class="w-64 shadow-md p-6 flex flex-col">
-        <h1 class="text-2xl font-bold text-blue-600">Staff Members</h1>
+    <div class="base flex h-screen">
+      <section class="w-64 shadow-md p-6 flex flex-col">
+        <h1 class="text-xl font-bold text-blue-600">Unassigned Members</h1>
         <div class="workers">
-          <div
-            class="mt-6 bg-linear-to-r from-zinc-400 to-indigo-200 rounded-xl p-1 px-2 flex items-center gap-4 hover:shadow duration-300"
-          >
-            <img
-              src="assets/avatar.png"
-              class="w-12 h-12 rounded-full bg-blue-300  object-cover"
-            />
-            <div class="flex-1">
-              <h2 class="font-semibold">Brent Sweeney</h2>
-              <p class="text-gray-500 text-sm">IT</p>
-            </div>
-            <button class="text-blue-600 font-medium">Edit</button>
+          <div class="flex justify-center opacity-40">
+            <p>no worker found</p>
+            <iconify-icon
+              icon="lets-icons:sad-light"
+              width="24"
+              height="24"
+            ></iconify-icon>
           </div>
         </div>
-
         <button
+          id="addWorkerBtn"
           command="show-modal"
           commandfor="workerModal"
           class="mt-auto bg-blue-600 text-white py-3 rounded-xl font-semibold hover:bg-blue-700 duration-300"
         >
           Add New Worker
         </button>
-      </aside>
+      </section>
       <!-- Modal Dialog -->
       <el-dialog>
         <dialog
@@ -51,9 +46,7 @@
             <el-dialog-panel
               class="relative transform overflow-hidden rounded-xl bg-white text-left shadow-2xl transition-all data-closed:translate-y-4 data-closed:opacity-0 data-enter:duration-300 data-enter:ease-out data-leave:duration-200 data-leave:ease-in sm:my-8 sm:w-full sm:max-w-2xl data-closed:sm:translate-y-0 data-closed:sm:scale-95"
             >
-              <div
-                class="flex items-center justify-between px-6 pt-6 pb-4 border-b"
-              >
+              <div class="flex items-center justify-between px-6 pt-6 pb-4">
                 <h3 id="dialog-title" class="text-2xl font-bold text-blue-600">
                   Add Worker
                 </h3>
@@ -65,8 +58,11 @@
                   &times;
                 </button>
               </div>
-              <div class="px-6 py-4 max-h-[70vh] overflow-y-auto">
-                <form id="workerForm">
+              <div class="px-6 py-4 max-h-[70vh] overflow-y-auto shadow-xl">
+                <form
+                  id="workerForm"
+                  class="shadow-xl rounded-md p-3 bg-gray-200"
+                >
                   <div class="mb-4">
                     <label class="block text-gray-700 font-medium mb-2">
                       Name:
@@ -76,8 +72,9 @@
                       type="text"
                       name="name"
                       placeholder="Perry Mckee"
-                      class="personal w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      class="personal w-full px-4 py-2 rounded-lg bg-gray-100 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white transition-shadow shadow-sm"
                     />
+                    <span class="text-red-600"></span>
                   </div>
                   <div class="mb-4">
                     <label class="block text-gray-700 font-medium mb-2">
@@ -86,13 +83,15 @@
                     <select
                       id="worker_role"
                       name="role"
-                      class="personal w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      class="personal w-full px-4 py-2 rounded-lg bg-gray-100 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white transition-shadow shadow-sm"
                     >
+                      <option>Receptionist</option>
                       <option>IT Guy</option>
-                      <option>Manager</option>
-                      <option>Developer</option>
-                      <option>Designer</option>
+                      <option>Security</option>
+                      <option>Cleaning</option>
+                      <option>Other</option>
                     </select>
+                    <span class="text-red-600"></span>
                   </div>
                   <div class="mb-4">
                     <label class="block text-gray-700 font-medium mb-2">
@@ -101,15 +100,21 @@
                     <input
                       id="worker_photo"
                       type="url"
-                      name="photo"
+                      name="url"
                       placeholder="https://www.mavinavif.com.au"
-                      class="personal w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      class="personal w-full px-4 py-2 rounded-lg bg-gray-100 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white transition-shadow shadow-sm"
                     />
+                    <span class="text-red-600"></span>
                     <div class="mt-4 flex justify-center">
                       <div
                         class="w-32 h-32 rounded-full border-2 border-gray-300 flex items-center justify-center bg-gray-50"
                       >
-                        <span class="text-gray-400 text-sm">Photo Preview</span>
+                        <img
+                          id="picture"
+                          class="object-cover rounded-full"
+                          src=""
+                          alt="photo preview"
+                        />
                       </div>
                     </div>
                   </div>
@@ -117,103 +122,18 @@
                     <label class="block text-gray-700 font-medium mb-2">
                       Experiences:
                     </label>
-                    <div class="p-4 bg-gray-50 experiences-container">
-                      <div class="border rounded-lg p-4 experience mb-3">
-                        <div class="mb-3">
-                          <label class="block text-gray-600 text-sm mb-1">
-                            Company:
-                          </label>
-                          <input
-                            type="text"
-                            name="company"
-                            placeholder="Itaque ab voluptatem"
-                            class="worker_company w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                          />
-                        </div>
-                        <div class="mb-3">
-                          <label class="block text-gray-600 text-sm mb-1">
-                            Role:
-                          </label>
-                          <input
-                            type="text"
-                            name="expRole"
-                            placeholder="Qui laudantium perf"
-                            class="worker_expRole w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                          />
-                        </div>
-                        <div class="mb-3">
-                          <label class="block text-gray-600 text-sm mb-1">
-                            From:
-                          </label>
-                          <input
-                            type="date"
-                            name="from"
-                            class="worker_from_date w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                          />
-                        </div>
-                        <div class="mb-3">
-                          <label class="block text-gray-600 text-sm mb-1">
-                            To:
-                          </label>
-                          <input
-                            type="date"
-                            name="to"
-                            class="worker_to_date w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                          />
-                        </div>
-                      </div>
-                      <div class="experience border rounded-lg p-4">
-                        <div class="mb-3">
-                          <label class="block text-gray-600 text-sm mb-1">
-                            Company:
-                          </label>
-                          <input
-                            type="text"
-                            name="company"
-                            placeholder="Itaque ab voluptatem"
-                            class="worker_company w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                          />
-                        </div>
-                        <div class="mb-3">
-                          <label class="block text-gray-600 text-sm mb-1">
-                            Role:
-                          </label>
-                          <input
-                            type="text"
-                            name="expRole"
-                            placeholder="Qui laudantium perf"
-                            class="worker_expRole w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                          />
-                        </div>
-                        <div class="mb-3">
-                          <label class="block text-gray-600 text-sm mb-1">
-                            From:
-                          </label>
-                          <input
-                            type="date"
-                            name="from"
-                            class="worker_from_date w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                          />
-                        </div>
-                        <div class="mb-3">
-                          <label class="block text-gray-600 text-sm mb-1">
-                            To:
-                          </label>
-                          <input
-                            type="date"
-                            name="to"
-                            class="worker_to_date w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                          />
-                        </div>
-                      </div>
-
-                      <button
-                        type="button"
-                        class="bg-yellow-400 text-white px-4 py-2 rounded-lg font-semibold hover:bg-yellow-500"
-                      >
-                        Add Experience
-                      </button>
-                    </div>
+                    <div class="p-4 experiences-container"></div>
+                    <button
+                      id="addExp"
+                      type="button"
+                      class="bg-yellow-400 w-10 h-10 rounded-full flex items-center justify-center place-self-center duration-300 text-white px-4 py-2 font-semibold hover:bg-yellow-500"
+                    >
+                      <iconify-icon
+                        icon="zondicons:add-solid"
+                        width="20"
+                        height="20"
+                      ></iconify-icon>
+                    </button>
                   </div>
                   <div class="mb-4">
                     <label class="block text-gray-700 font-medium mb-2">
@@ -224,8 +144,9 @@
                       type="email"
                       name="email"
                       placeholder="rory@mailinator.com"
-                      class="personal w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      class="personal w-full px-4 py-2 rounded-lg bg-gray-100 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white transition-shadow shadow-sm"
                     />
+                    <span class="text-red-600"></span>
                   </div>
                   <div class="mb-4">
                     <label class="block text-gray-700 font-medium mb-2">
@@ -236,8 +157,9 @@
                       type="tel"
                       name="phone"
                       placeholder="+1 (655) 313-9861"
-                      class="personal w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      class="personal w-full px-4 py-2 rounded-lg bg-gray-100 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white transition-shadow shadow-sm"
                     />
+                    <span class="text-red-600"></span>
                   </div>
                 </form>
               </div>
@@ -245,7 +167,7 @@
                 <button
                   type="submit"
                   form="workerForm"
-                  class="px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700"
+                  class="px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold duration-200 hover:bg-blue-700"
                 >
                   Save Worker
                 </button>
@@ -253,7 +175,7 @@
                   type="button"
                   command="close"
                   commandfor="workerModal"
-                  class="px-6 py-3 bg-gray-500 text-white rounded-lg font-semibold hover:bg-gray-600"
+                  class="px-6 py-3 bg-gray-500 text-white duration-200 rounded-lg font-semibold hover:bg-gray-600"
                 >
                   Cancel
                 </button>
@@ -263,46 +185,195 @@
         </dialog>
       </el-dialog>
       <main class="flex-1 p-4 overflow-auto">
-        <div
-          class="relative w-full h-full bg-white rounded-xl shadow-xl overflow-hidden"
-        >
-          <img src="assets/plan.jpg" class="absolute inset-0 w-full h-full" />
+        <div class="relative w-full h-full bg-white rounded-xl shadow-xl">
+          <!-- <img src="assets/plan.jpg" class="absolute inset-0 w-full h-full" />
           <div class="floor-plan-grid absolute inset-0">
-            <button
-              class="room-btn conference border-2 bg-blue-600 text-white w-10 h-10 rounded-full flex items-center justify-center place-self-center shadow-lg hover:bg-blue-700 transition-colors"
+            <div class="conference">
+                <button
+              class="room-btn border-2 bg-blue-600 text-white w-10 h-10 rounded-full flex items-center justify-center place-self-center shadow-lg hover:bg-blue-700 transition-colors"
             >
-              <iconify-icon icon="zondicons:add-solid" width="20" height="20"></iconify-icon>
+              <iconify-icon
+                icon="zondicons:add-solid"
+                width="20"
+                height="20"
+              ></iconify-icon>
             </button>
+            <strong>dhsbjds</strong>
+            </div>
+            
             <button
               class="room-btn reception border-2 bg-blue-600 text-white w-10 h-10 rounded-full flex items-center justify-center place-self-center shadow-lg hover:bg-blue-700 transition-colors"
             >
-              <iconify-icon icon="zondicons:add-solid" width="20" height="20"></iconify-icon>
+              <iconify-icon
+                icon="zondicons:add-solid"
+                width="20"
+                height="20"
+              ></iconify-icon>
             </button>
             <button
               class="room-btn servers border-2 bg-blue-600 text-white w-10 h-10 rounded-full flex items-center justify-center place-self-center shadow-lg hover:bg-blue-700 transition-colors"
             >
-              <iconify-icon icon="zondicons:add-solid" width="20" height="20"></iconify-icon>
+              <iconify-icon
+                icon="zondicons:add-solid"
+                width="20"
+                height="20"
+              ></iconify-icon>
             </button>
             <button
               class="room-btn security bg-blue-600 border-2 text-white w-10 h-10 rounded-full flex items-center justify-center place-self-center shadow-lg hover:bg-blue-700 transition-colors"
             >
-              <iconify-icon icon="zondicons:add-solid" width="20" height="20"></iconify-icon>
+              <iconify-icon
+                icon="zondicons:add-solid"
+                width="20"
+                height="20"
+              ></iconify-icon>
             </button>
             <button
               class="room-btn staff border-2 bg-blue-600 text-white w-10 h-10 rounded-full flex items-center justify-center place-self-center shadow-lg hover:bg-blue-700 transition-colors"
             >
-              <iconify-icon icon="zondicons:add-solid" width="20" height="20"></iconify-icon>
+              <iconify-icon
+                icon="zondicons:add-solid"
+                width="20"
+                height="20"
+              ></iconify-icon>
             </button>
             <button
               class="room-btn vault border-2 bg-blue-600 text-white w-10 h-10 rounded-full flex items-center justify-center place-self-center shadow-lg hover:bg-blue-700 transition-colors"
             >
-              <iconify-icon icon="zondicons:add-solid" width="20" height="20"></iconify-icon>
+              <iconify-icon
+                icon="zondicons:add-solid"
+                width="20"
+                height="20"
+              ></iconify-icon>
             </button>
+          </div>
+        </div> -->
+          <div class="floor-plan-grid w-full h-fit sm:h-screen">
+            <!-- CONFERENCE -->
+            <div class="conference w-full h-full flex justify-center">
+              <div class="relative w-full h-full">
+                <div class="absolute inset-0 opacity-30"></div>
+                <img
+                  class="w-full h-full"
+                  src="assets/meetingRoom (1).png"
+                  alt=""
+                />
+                <button
+                  class="room-btn absolute z-10 border-2 bg-blue-600 text-white w-10 h-10 rounded-full flex items-center justify-center shadow-lg hover:bg-blue-700 duration-200 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transform"
+                >
+                  <iconify-icon
+                    icon="zondicons:add-solid"
+                    width="20"
+                    height="20"
+                  ></iconify-icon>
+                </button>
+              </div>
+            </div>
+            <!-- SERVERS -->
+            <div class="servers w-full h-full flex justify-center">
+              <div class="relative w-full h-full">
+                <div class="absolute inset-0 opacity-30"></div>
+                <img
+                  class="w-full h-full"
+                  src="assets/serverRoom (1).png"
+                  alt=""
+                />
+                <button
+                  class="room-btn absolute z-10 border-2 bg-blue-600 text-white w-10 h-10 rounded-full flex items-center justify-center shadow-lg hover:bg-blue-700 duration-200 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transform"
+                >
+                  <iconify-icon
+                    icon="zondicons:add-solid"
+                    width="20"
+                    height="20"
+                  ></iconify-icon>
+                </button>
+              </div>
+            </div>
+            <!-- SECURITY -->
+            <div class="security w-full h-full flex justify-center">
+              <div class="relative w-full h-full">
+                <div class="absolute inset-0 opacity-30"></div>
+                <img
+                  class="w-full h-full"
+                  src="assets/securityRoom (1).png"
+                  alt=""
+                />
+                <button
+                  class="room-btn absolute z-10 border-2 bg-blue-600 text-white w-10 h-10 rounded-full flex items-center justify-center shadow-lg hover:bg-blue-700 duration-200 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transform"
+                >
+                  <iconify-icon
+                    icon="zondicons:add-solid"
+                    width="20"
+                    height="20"
+                  ></iconify-icon>
+                </button>
+              </div>
+            </div>
+            <!-- RECEPTION -->
+            <div class="reception w-full h-full flex justify-center">
+              <div class="relative w-full h-full">
+                <div class="absolute inset-0 opacity-30"></div>
+                <img
+                  class="w-full h-full"
+                  src="assets/Reception (1).png"
+                  alt=""
+                />
+                <button
+                  class="room-btn absolute z-10 border-2 bg-blue-600 text-white w-10 h-10 rounded-full flex items-center justify-center shadow-lg hover:bg-blue-700 duration-200 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transform"
+                >
+                  <iconify-icon
+                    icon="zondicons:add-solid"
+                    width="20"
+                    height="20"
+                  ></iconify-icon>
+                </button>
+              </div>
+            </div>
+            <!-- STAFF -->
+            <div class="staff w-full h-full flex justify-center">
+              <div class="relative w-full h-full">
+                <div class="absolute inset-0 opacity-30"></div>
+                <img
+                  class="w-full h-full"
+                  src="assets/employeeRoom (1).png"
+                  alt=""
+                />
+                <button
+                  class="room-btn absolute z-10 border-2 bg-blue-600 text-white w-10 h-10 rounded-full flex items-center justify-center shadow-lg hover:bg-blue-700 duration-200 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transform"
+                >
+                  <iconify-icon
+                    icon="zondicons:add-solid"
+                    width="20"
+                    height="20"
+                  ></iconify-icon>
+                </button>
+              </div>
+            </div>
+            <!-- VAULT -->
+            <div class="vault w-full h-full flex justify-center">
+              <div class="relative w-full h-full">
+                <div class="absolute inset-0 opacity-30"></div>
+                <img
+                  class="w-full h-full"
+                  src="assets/archiveRoom (1).png"
+                  alt=""
+                />
+                <button
+                  class="room-btn absolute z-10 border-2 bg-blue-600 text-white w-10 h-10 rounded-full flex items-center justify-center shadow-lg hover:bg-blue-700 duration-200 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transform"
+                >
+                  <iconify-icon
+                    icon="zondicons:add-solid"
+                    width="20"
+                    height="20"
+                  ></iconify-icon>
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </main>
     </div>
-    <script src="script.js"></script>
+    <script type="module" src="script.js"></script>
     <script src="https://code.iconify.design/iconify-icon/3.0.0/iconify-icon.min.js"></script>
   </body>
 </html>

@@ -3,34 +3,65 @@
 
 .floor-plan-grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   grid-template-rows: repeat(3, minmax(0, 1fr));
   grid-template-areas:
-    'conference . servers security'
-    'reception . . .'
-    'reception  . staff vault'
+    'conference conference . servers security'
+    ' reception reception . . .'
+    ' reception reception  . staff vault';
+  background-image: url('assets/OIG1.jpg');
 }
 
-.room-btn.conference {
+.conference {
   grid-area: conference;
 }
 
-.room-btn.servers {
+.servers {
   grid-area: servers;
 }
 
-.room-btn.security {
+.security {
   grid-area: security;
 }
 
-.room-btn.reception {
+.reception {
   grid-area: reception;
 }
 
-.room-btn.staff {
+.staff {
   grid-area: staff;
 }
 
-.room-btn.vault {
+.vault {
   grid-area: vault;
+}
+
+@media (max-width: 900px) {
+  .floor-plan-grid {
+    grid-template-rows: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-areas:
+    'conference conference conference conference'
+    'servers servers security security '
+    'reception reception  reception reception '
+    'staff staff  vault vault';
+  }
+  
+}
+
+@media (max-width: 600px){
+    .base{
+    flex-direction: column;
+  };
+
+  .floor-plan-grid {
+    grid-template-rows: repeat(6, minmax(0, 1fr));
+   grid-template-areas:
+    'conference  conference conference conference conference'
+    'servers  servers servers servers servers '
+    'security security security security security '
+    'reception reception reception reception reception'
+    'staff staff staff  staff staff'
+    'vault vault vault vault vault';  
+  }
 }
