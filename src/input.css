@@ -7,9 +7,11 @@
   grid-template-rows: repeat(3, minmax(0, 1fr));
   grid-template-areas:
     'conference conference . servers security'
-    ' reception reception . . .'
-    ' reception reception  . staff vault';
+    'reception reception . . .'
+    'reception reception . staff vault';
   background-image: url('assets/OIG1.jpg');
+  min-height: 600px;
+  height: 100%;
 }
 
 .conference {
@@ -36,32 +38,34 @@
   grid-area: vault;
 }
 
-@media (max-width: 900px) {
+/* Tablet view */
+@media (max-width: 1000px) {
   .floor-plan-grid {
-    grid-template-rows: repeat(4, minmax(0, 1fr));
-    grid-template-columns: repeat(4, minmax(0, 1fr));
     grid-template-areas:
-    'conference conference conference conference'
-    'servers servers security security '
-    'reception reception  reception reception '
-    'staff staff  vault vault';
+      'conference conference conference servers security'
+      'reception reception reception . .'
+      'reception reception reception staff vault';
   }
-  
 }
 
-@media (max-width: 600px){
-    .base{
+/* Mobile view */
+@media (max-width: 600px) {
+  .base {
     flex-direction: column;
-  };
+  }
 
   .floor-plan-grid {
-    grid-template-rows: repeat(6, minmax(0, 1fr));
-   grid-template-areas:
-    'conference  conference conference conference conference'
-    'servers  servers servers servers servers '
-    'security security security security security '
-    'reception reception reception reception reception'
-    'staff staff staff  staff staff'
-    'vault vault vault vault vault';  
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(6, minmax(200px, 1fr));
+    grid-template-areas:
+      'conference'
+      'servers'
+      'security'
+      'reception'
+      'staff'
+      'vault';
+    gap: 8px;
+    min-height: auto;
   }
 }

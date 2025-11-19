@@ -12,6 +12,7 @@ workerForm.addEventListener('submit',(e)=>submitWorkerData(e,idToModify));
 pictureInput.addEventListener('input',picturePreview);
 addExpButton.addEventListener("click",addExperience)
 window.fillWorkerForm = fillWorkerForm;
+window.openWorkerModal = openWorkerModal;
 
 
 
@@ -22,15 +23,15 @@ function renderWorkers(){
 
     workers.forEach((worker)=>{
         workersList.innerHTML += `
-            <div
-            class="mt-6 bg-linear-to-r from-zinc-400 to-indigo-200 rounded-xl p-1 px-2 flex items-center shadow gap-4 hover:shadow-md duration-300"
+            <div 
+            class="workerDiv mt-6 bg-linear-to-r from-zinc-400 to-indigo-200 rounded-xl p-1 px-2 flex items-center shadow gap-4 hover:shadow-md duration-300"
           >
             <img
               src="${worker.url ? worker.url : 'assets/avatar.png' }"
               class="w-10 h-10 rounded-full border object-cover"
             />
             <div class="flex-1">
-              <h2 class="font-semibold text-sm">${worker.name}</h2>
+              <h2 onclick="window.openWorkerModal('${worker.id}')" class="font-semibold text-sm hover:scale-110 duration-200 hover:cursor-pointer">${worker.name}</h2>
               <p class="text-gray-500 text-xs">${worker.role}</p>
             </div>
             <button command="show-modal"
@@ -41,7 +42,14 @@ function renderWorkers(){
             </button>
           </div>
     `;
+    
+    
+    
     })
+    workersList.childNodes.forEach((div)=>{
+      handleTransition(div , "workerDiv mt-6 bg-linear-to-r from-zinc-400 to-indigo-200 rounded-xl p-1 px-2 flex items-center shadow gap-4 hover:shadow-md duration-300")
+    })
+    
     
     
 }
@@ -149,8 +157,13 @@ function addExperience(){
                           /><span class="text-red-600" ></span>
                         </div>
     `;
+    
+  exp_container.appendChild(div);
 
-    exp_container.appendChild(div)
+  handleTransition(div, div.classList)
+
+   
+   
 }
 
 
@@ -181,6 +194,18 @@ function fillWorkerForm(workerId) {
         lastBlock.querySelector("[name='to']").value = exp.to;
     });
 }
+
+function openWorkerModal(workerId){
+  document.getElementById("openWorkerInfo").click();
+}
+
+function handleTransition(div , classes=''){
+      div.className = classes + ' ' + 'opacity-0 -translate-y-2 transition-all duration-300';
+      setTimeout(() => {
+  div.className = classes + ' ' + 'opacity-100 translate-y-0 transition-all duration-300';
+}, 10);
+}
+
 
 
 
