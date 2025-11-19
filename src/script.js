@@ -11,6 +11,7 @@ let addWorkerButton = document.querySelector('#addWorkerBtn');
 workerForm.addEventListener('submit',(e)=>submitWorkerData(e,idToModify));
 pictureInput.addEventListener('input',picturePreview);
 addExpButton.addEventListener("click",addExperience)
+addWorkerButton.addEventListener('click', cleanModal)
 window.fillWorkerForm = fillWorkerForm;
 window.openWorkerModal = openWorkerModal;
 
@@ -27,17 +28,17 @@ function renderWorkers(){
             class="workerDiv mt-6 bg-linear-to-r from-zinc-400 to-indigo-200 rounded-xl p-1 px-2 flex items-center shadow gap-4 hover:shadow-md duration-300"
           >
             <img
-              src="${worker.url ? worker.url : 'assets/avatar.png' }"
+              src="${worker.url}"
               class="w-10 h-10 rounded-full border object-cover"
             />
             <div class="flex-1">
-              <h2 onclick="window.openWorkerModal('${worker.id}')" class="font-semibold text-sm hover:scale-110 duration-200 hover:cursor-pointer">${worker.name}</h2>
+              <h2 onclick="window.openWorkerModal(${worker.id})" class="font-semibold text-sm hover:scale-110 duration-200 hover:cursor-pointer">${worker.name}</h2>
               <p class="text-gray-500 text-xs">${worker.role}</p>
             </div>
             <button command="show-modal"
                     commandfor="workerModal" class="font-medium"
                     id="modifyButton"
-                    onclick="window.fillWorkerForm('${worker.id}');">
+                    onclick="window.fillWorkerForm(${worker.id});">
             <iconify-icon class="text-green-600" icon="solar:pen-bold-duotone" width="24" height="24"></iconify-icon>
             </button>
           </div>
@@ -102,13 +103,15 @@ function submitWorkerData(e,id = null){
     }
     else{
       addNewWorker(workerObject , experiences)
+      handleURLError(workerObject)
     }
 
     //cleanup
     idToModify = null;
-    workerForm.reset();
+    cleanModal()
     document.getElementById("workerModal").close();
     renderWorkers();
+    document.querySelector('.experiences-container').innerHTML=''
     
   }
 }
@@ -195,8 +198,86 @@ function fillWorkerForm(workerId) {
     });
 }
 
-function openWorkerModal(workerId){
+function openWorkerModal(workerId) {
+  let worker = workers.find((worker) => worker.id == workerId);
+  let detailsContainer = document.getElementById('details-container');
+
+
+  detailsContainer.innerHTML = `
+    <div class="space-y-6">
+      <div class="flex justify-center">
+        <div class="w-32 h-32 rounded-full border-4 border-blue-600 overflow-hidden bg-gray-100">
+          <img 
+            src="${worker.url}" 
+            alt="${worker.name}"
+            class="w-full h-full object-cover"
+          />
+        </div>
+      </div>
+
+      <div class="bg-gray-50 rounded-lg p-4 space-y-3">
+        <h4 class="text-lg font-semibold text-gray-700 border-b pb-2">Personal Information</h4>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <p class="text-sm text-gray-500">Name</p>
+            <p class="font-medium text-gray-800">${worker.name}</p>
+          </div>
+          
+          <div>
+            <p class="text-sm text-gray-500">Role</p>
+            <p class="font-medium text-gray-800">${worker.role}</p>
+          </div>
+          
+          <div>
+            <p class="text-sm text-gray-500">Email</p>
+            <p class="font-medium text-gray-800">${worker.email}</p>
+          </div>
+          
+          <div>
+            <p class="text-sm text-gray-500">Phone</p>
+            <p class="font-medium text-gray-800">${worker.phone}</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-gray-50 rounded-lg p-4">
+        <h4 class="text-lg font-semibold text-gray-700 border-b pb-2 mb-3">Experience</h4>
+        
+        ${worker.experiences && worker.experiences.length > 0 
+          ? worker.experiences.map((exp, index) => `
+              <div class="mb-4 last:mb-0 p-3 bg-white rounded-lg shadow-sm">
+                <div class="flex items-start justify-between mb-2">
+                  <div>
+                    <h5 class="font-semibold text-gray-800">${exp.expRole}</h5>
+                    <p class="text-sm text-blue-600">${exp.company}</p>
+                  </div>
+                  <span class="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded">#${index + 1}</span>
+                </div>
+                <div class="flex items-center gap-2 text-sm text-gray-500">
+                  <iconify-icon icon="mdi:calendar" width="16" height="16"></iconify-icon>
+                  <span>${formatDate(exp.from)} - ${formatDate(exp.to)}</span>
+                </div>
+              </div>
+            `).join('')
+          : `
+            <div class="flex items-center justify-center gap-2 text-gray-400 py-4">
+              <iconify-icon icon="mdi:briefcase-off-outline" width="24" height="24"></iconify-icon>
+              <p>No experience recorded</p>
+            </div>
+          `
+        }
+      </div>
+    </div>
+  `;
+
   document.getElementById("openWorkerInfo").click();
+}
+
+
+function formatDate(dateString) {
+  let date = new Date(dateString);
+  return date.toLocaleDateString();
 }
 
 function handleTransition(div , classes=''){
@@ -204,6 +285,21 @@ function handleTransition(div , classes=''){
       setTimeout(() => {
   div.className = classes + ' ' + 'opacity-100 translate-y-0 transition-all duration-300';
 }, 10);
+}
+
+function cleanModal(){
+  workerForm.reset();
+  document.getElementById("picture").src='';
+}
+
+//not working
+function handleURLError(worker){
+  
+  document.querySelector("#picture").onerror = () =>{
+    worker.url = "assets/avatar.png";
+    
+  }
+  console.log(worker);  
 }
 
 

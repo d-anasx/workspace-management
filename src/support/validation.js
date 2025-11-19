@@ -22,11 +22,6 @@ function validateInput(value, type) {
       }
       return { valid: true, error: "" };
 
-    case "url":
-      if (!value) {
-        return { valid: false, error: "Invalid URL format" };
-      }
-
     default:
       return { valid: true, error: "" };
   }
