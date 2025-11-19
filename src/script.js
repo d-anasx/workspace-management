@@ -79,7 +79,7 @@ function submitWorkerData(e,id = null){
     let experiences = [];
     let isValidate = true;
 
-
+    //handling expriences fields
     experienceBlocks.forEach((exp)=>{
         let expInputs = exp.querySelectorAll("input");
         let expObject = {};
@@ -222,11 +222,11 @@ function openWorkerModal(workerId) {
   detailsContainer.innerHTML = `
     <div class="space-y-6">
       <div class="flex justify-center">
-        <div class="w-32 h-32 rounded-full border-4 border-blue-600 overflow-hidden bg-gray-100">
+        <div class="w-32 h-32 rounded-full border-4 border-blue-600 overflow-hidden ">
           <img 
             src="${worker.url}" 
             alt="${worker.name}"
-            class="w-full h-full object-cover"
+            class="w-full h-full object-cover bg-blue-400"
           />
         </div>
       </div>
@@ -297,10 +297,10 @@ function formatDate(dateString) {
 }
 
 function handleTransition(div , classes=''){
-      div.className = classes + ' ' + 'opacity-0 -translate-y-2 transition-all duration-300';
+      div.className = classes + ' ' + 'opacity-0 scale-120  -translate-y-2 transition-all duration-300';
       setTimeout(() => {
-  div.className = classes + ' ' + 'opacity-100 translate-y-0 transition-all duration-300';
-}, 10);
+  div.className = classes + ' ' + 'opacity-100 scale-100 translate-y-0 transition-all duration-300';
+}, 100);
 }
 
 function cleanModal(){
@@ -449,14 +449,18 @@ function renderRoomWorkers(roomName) {
   room[roomName].forEach(worker => {
     const workerBadge = document.createElement('div');
     workerBadge.className =
-      'bg-white/95 backdrop-blur-sm flex items-center flex-nowrap w-fit h-fit rounded-full p-0.5 shadow-lg hover:bg-white transition-all cursor-pointer';
+       ' relative bg-white/95 backdrop-blur-sm flex items-center flex-nowrap w-fit h-fit rounded-full p-0.5 shadow-lg hover:bg-white transition-all cursor-pointer';
 
     workerBadge.innerHTML = `
       <img 
         src="${worker.url}" 
         alt="${worker.name}"
-        class="w-10 h-10 rounded-full border object-cover border-blue-500"
+        class="w-10 h-10 rounded-full object-cover"
       />
+      <button class="absolute opacity-0 top-0 left-0 w-full h-full flex items-center justify-center hover:bg-red-600/60 hover:opacity-100 duration-300  text-white rounded-full "
+      onclick="event.stopPropagation(); unassignWorkerFromRoom('${worker.id}', '${roomName}')" >
+      <iconify-icon icon="lets-icons:back" width="24" height="24"  style="color: #130202"></iconify-icon>
+      </button>
 
     `;
 
@@ -495,6 +499,29 @@ function ArrayByRole(role){
   }
 
   
+  function unassignWorkerFromRoom(workerId, roomName) {
+  let room = assignWorkers.find(r => r[roomName]);
+  
+  if (!room) return;
+  
+  const workerIndex = room[roomName].findIndex(w => w.id == workerId);
+  
+  if (workerIndex !== -1) {
+    const worker = room[roomName][workerIndex];
+    
+    
+    room[roomName].splice(workerIndex, 1);
+    
+   
+    workers.push(worker);
+    
+    
+    renderUnassignedWorkers();
+    renderRoomWorkers(roomName);
+    
+    console.log(`${worker.name} unassigned from ${roomName}`);
+  }
+}
   
 
 

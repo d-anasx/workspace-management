@@ -294,236 +294,157 @@
         commandfor="AssignworkerModal"
       ></button>
 
-      <main class="flex-1 p-4 overflow-auto md:place-self-center">
-        <div class="relative w-full h-fit bg-white rounded-xl shadow-xl">
-          <!-- <img src="assets/plan.jpg" class="absolute inset-0 w-full h-full" />
-          <div class="floor-plan-grid absolute inset-0">
-            <div class="conference">
-                <button
-              class="room-btn border-2 bg-blue-600 text-white w-10 h-10 rounded-full flex items-center justify-center place-self-center shadow-lg hover:bg-blue-700 transition-colors"
-            >
-              <iconify-icon
-                icon="zondicons:add-solid"
-                width="20"
-                height="20"
-              ></iconify-icon>
-            </button>
-            <strong>dhsbjds</strong>
-            </div>
-            
-            <button
-              class="room-btn reception border-2 bg-blue-600 text-white w-10 h-10 rounded-full flex items-center justify-center place-self-center shadow-lg hover:bg-blue-700 transition-colors"
-            >
-              <iconify-icon
-                icon="zondicons:add-solid"
-                width="20"
-                height="20"
-              ></iconify-icon>
-            </button>
-            <button
-              class="room-btn servers border-2 bg-blue-600 text-white w-10 h-10 rounded-full flex items-center justify-center place-self-center shadow-lg hover:bg-blue-700 transition-colors"
-            >
-              <iconify-icon
-                icon="zondicons:add-solid"
-                width="20"
-                height="20"
-              ></iconify-icon>
-            </button>
-            <button
-              class="room-btn security bg-blue-600 border-2 text-white w-10 h-10 rounded-full flex items-center justify-center place-self-center shadow-lg hover:bg-blue-700 transition-colors"
-            >
-              <iconify-icon
-                icon="zondicons:add-solid"
-                width="20"
-                height="20"
-              ></iconify-icon>
-            </button>
-            <button
-              class="room-btn staff border-2 bg-blue-600 text-white w-10 h-10 rounded-full flex items-center justify-center place-self-center shadow-lg hover:bg-blue-700 transition-colors"
-            >
-              <iconify-icon
-                icon="zondicons:add-solid"
-                width="20"
-                height="20"
-              ></iconify-icon>
-            </button>
-            <button
-              class="room-btn vault border-2 bg-blue-600 text-white w-10 h-10 rounded-full flex items-center justify-center place-self-center shadow-lg hover:bg-blue-700 transition-colors"
-            >
-              <iconify-icon
-                icon="zondicons:add-solid"
-                width="20"
-                height="20"
-              ></iconify-icon>
-            </button>
-          </div>
-        </div> -->
+      <main class="flex-1 p-4  md:place-self-center ">
+        <div class="relative w-full h-screen bg-white rounded-xl shadow-xl">
           <div class="floor-plan-grid w-full rounded-md">
             <!-- CONFERENCE -->
-            <div class="conference w-full h-[260px] grid 
-            place-items-center text-white text-xl font-semibold"
-     style="
-       background-image: url('assets/meetingRoom (1).png');
-       background-size: 100% 100%;
-       background-repeat: no-repeat;
-     "
->
+            <div
+              class="conference w-full h-full grid place-items-center "
+              style="
+                background-image: url('assets/meetingRoom (1).png');
+                background-size: 100% 100%;
+                background-repeat: no-repeat;
+              "
+            >
+              <div class="self-end p-3 justify-self-start">Conference</div>
 
-    
-    <div class="self-end p-3 justify-self-start">
-      Conference
-    </div>
+              <div class="place-self-center flex room-workers"></div>
 
-    <div class="place-self-center flex room-workers">
-      <div>anas</div>
-      <div>anas</div>
-    </div>
-       
-    <button
-      data-room-name="conference"
-      class="room-btn border-2 place-self-center bg-blue-600 text-white w-10 h-10 rounded-full 
-             flex items-center justify-center shadow-lg hover:bg-blue-700 duration-200"
-    >
-      <iconify-icon icon="zondicons:add-solid" width="20" height="20"></iconify-icon>
-    </button>
-
-</div>
-
-
+              <button
+                data-room-name="conference"
+                class="room-btn border-2 place-self-center bg-blue-600 text-white w-10 h-10 rounded-full flex items-center justify-center shadow-lg hover:bg-blue-700 duration-200"
+              >
+                <iconify-icon
+                  icon="zondicons:add-solid"
+                  width="20"
+                  height="20"
+                ></iconify-icon>
+              </button>
+            </div>
 
             <!-- SERVERS -->
-            <div class="servers w-full h-auto flex justify-center">
-              <div class="relative w-full h-full">
-                <div
-                  class="w-full h-full flex items-end p-3 text-white text-xl font-semibold"
-                  style="
-                    background-image: url('assets/serverRoom (1).png');
-                    background-size: 100% 100%;
-                    background-repeat: no-repeat;
-                  "
-                >
-                  <strong class="">Servers</strong>
-                </div>
+            <div
+              class="servers w-full h-full grid place-items-center "
+              style="
+                background-image: url('assets/serverRoom\ \(1\).png');
+                background-size: 100% 100%;
+                background-repeat: no-repeat;
+              "
+            >
+              <div class="self-end p-3 justify-self-start">Servers</div>
 
-                <button
-                  data-room-name="servers"
-                  class="room-btn absolute z-10 border-2 bg-blue-600 text-white w-10 h-10 rounded-full flex items-center justify-center shadow-lg hover:bg-blue-700 duration-200 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transform"
-                >
-                  <iconify-icon
-                    icon="zondicons:add-solid"
-                    width="20"
-                    height="20"
-                  ></iconify-icon>
-                </button>
-              </div>
+              <div class="place-self-center flex room-workers"></div>
+
+              <button
+                data-room-name="servers"
+                class="room-btn border-2 place-self-center bg-blue-600 text-white w-10 h-10 rounded-full flex items-center justify-center shadow-lg hover:bg-blue-700 duration-200"
+              >
+                <iconify-icon
+                  icon="zondicons:add-solid"
+                  width="20"
+                  height="20"
+                ></iconify-icon>
+              </button>
             </div>
 
             <!-- SECURITY -->
-            <div class="security w-full h-full flex justify-center">
-              <div class="relative w-full h-full">
-                <div
-                  class="w-full h-full flex items-end p-3 text-white text-xl font-semibold"
-                  style="
-                    background-image: url('assets/securityRoom (1).png');
-                    background-size: 100% 100%;
-                    background-repeat: no-repeat;
-                  "
-                >
-                  Security
-                </div>
+            <div
+              class="security w-full h-full grid place-items-center "
+              style="
+                background-image: url('assets/securityRoom\ \(1\).png');
+                background-size: 100% 100%;
+                background-repeat: no-repeat;
+              "
+            >
+              <div class="self-end p-3 justify-self-start">Security</div>
 
-                <button
-                  data-room-name="security"
-                  class="room-btn absolute z-10 border-2 bg-blue-600 text-white w-10 h-10 rounded-full flex items-center justify-center shadow-lg hover:bg-blue-700 duration-200 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transform"
-                >
-                  <iconify-icon
-                    icon="zondicons:add-solid"
-                    width="20"
-                    height="20"
-                  ></iconify-icon>
-                </button>
-              </div>
+              <div class="place-self-center flex room-workers"></div>
+
+              <button
+                data-room-name="security"
+                class="room-btn border-2 place-self-center bg-blue-600 text-white w-10 h-10 rounded-full flex items-center justify-center shadow-lg hover:bg-blue-700 duration-200"
+              >
+                <iconify-icon
+                  icon="zondicons:add-solid"
+                  width="20"
+                  height="20"
+                ></iconify-icon>
+              </button>
             </div>
 
             <!-- RECEPTION -->
-            <div class="reception w-full h-full flex justify-center">
-              <div class="relative w-full h-full">
-                <div
-                  class="w-full h-full flex items-end p-3 text-white text-xl font-semibold"
-                  style="
-                    background-image: url('assets/Reception (1).png');
-                    background-size: 100% 100%;
-                    background-repeat: no-repeat;
-                  "
-                >
-                  Reception
-                </div>
+            <div
+              class="reception w-full h-full grid place-items-center "
+              style="
+                background-image: url('assets/Reception\ \(1\).png');
+                background-size: 100% 100%;
+                background-repeat: no-repeat;
+              "
+            >
+              <div class="self-end p-3 justify-self-start">Reception</div>
 
-                <button
-                  data-room-name="reception"
-                  class="room-btn absolute z-10 border-2 bg-blue-600 text-white w-10 h-10 rounded-full flex items-center justify-center shadow-lg hover:bg-blue-700 duration-200 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transform"
-                >
-                  <iconify-icon
-                    icon="zondicons:add-solid"
-                    width="20"
-                    height="20"
-                  ></iconify-icon>
-                </button>
-              </div>
+              <div class="place-self-center flex room-workers"></div>
+
+              <button
+                data-room-name="reception"
+                class="room-btn border-2 place-self-center bg-blue-600 text-white w-10 h-10 rounded-full flex items-center justify-center shadow-lg hover:bg-blue-700 duration-200"
+              >
+                <iconify-icon
+                  icon="zondicons:add-solid"
+                  width="20"
+                  height="20"
+                ></iconify-icon>
+              </button>
             </div>
 
             <!-- STAFF -->
-            <div class="staff w-full h-full flex justify-center">
-              <div class="relative w-full h-full">
-                <div
-                  class="w-full h-full flex items-end p-3 text-white text-xl font-semibold"
-                  style="
-                    background-image: url('assets/employeeRoom (1).png');
-                    background-size: 100% 100%;
-                    background-repeat: no-repeat;
-                  "
-                >
-                  Staff Room
-                </div>
+            <div
+              class="staff w-full h-full grid place-items-center "
+              style="
+                background-image: url('assets/employeeRoom\ \(1\).png');
+                background-size: 100% 100%;
+                background-repeat: no-repeat;
+              "
+            >
+              <div class="self-end p-3 justify-self-start">Staff room</div>
 
-                <button
-                  data-room-name="staff"
-                  class="room-btn absolute z-10 border-2 bg-blue-600 text-white w-10 h-10 rounded-full flex items-center justify-center shadow-lg hover:bg-blue-700 duration-200 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transform"
-                >
-                  <iconify-icon
-                    icon="zondicons:add-solid"
-                    width="20"
-                    height="20"
-                  ></iconify-icon>
-                </button>
-              </div>
+              <div class="place-self-center flex room-workers"></div>
+
+              <button
+                data-room-name="staff"
+                class="room-btn border-2 place-self-center bg-blue-600 text-white w-10 h-10 rounded-full flex items-center justify-center shadow-lg hover:bg-blue-700 duration-200"
+              >
+                <iconify-icon
+                  icon="zondicons:add-solid"
+                  width="20"
+                  height="20"
+                ></iconify-icon>
+              </button>
             </div>
 
             <!-- VAULT -->
-            <div class="vault w-full h-full flex justify-center">
-              <div class="relative w-full h-full">
-                <div
-                  class="w-full h-full flex items-end p-3 text-white text-xl font-semibold"
-                  style="
-                    background-image: url('assets/archiveRoom (1).png');
-                    background-size: 100% 100%;
-                    background-repeat: no-repeat;
-                  "
-                >
-                  Vault
-                </div>
+            <div
+              class="vault w-full h-full grid place-items-center "
+              style="
+                background-image: url('assets/archiveRoom\ \(1\).png');
+                background-size: 100% 100%;
+                background-repeat: no-repeat;
+              "
+            >
+              <div class="self-end p-3 justify-self-start">Vault</div>
 
-                <button
-                  data-room-name="vault"
-                  class="room-btn absolute z-10 border-2 bg-blue-600 text-white w-10 h-10 rounded-full flex items-center justify-center shadow-lg hover:bg-blue-700 duration-200 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transform"
-                >
-                  <iconify-icon
-                    icon="zondicons:add-solid"
-                    width="20"
-                    height="20"
-                  ></iconify-icon>
-                </button>
-              </div>
+              <div class="place-self-center flex room-workers"></div>
+
+              <button
+                data-room-name="vault"
+                class="room-btn border-2 place-self-center bg-blue-600 text-white w-10 h-10 rounded-full flex items-center justify-center shadow-lg hover:bg-blue-700 duration-200"
+              >
+                <iconify-icon
+                  icon="zondicons:add-solid"
+                  width="20"
+                  height="20"
+                ></iconify-icon>
+              </button>
             </div>
           </div>
         </div>
