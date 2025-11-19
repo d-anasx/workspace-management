@@ -234,13 +234,13 @@
         </dialog>
       </el-dialog>
       <button
-      class="hidden"
+        class="hidden"
         id="openWorkerInfo"
         command="show-modal"
         commandfor="workerInfosModal"
       ></button>
 
-       <!-- Assign modal Dialog -->
+      <!-- Assign modal Dialog -->
       <el-dialog>
         <dialog
           id="AssignworkerModal"
@@ -259,7 +259,7 @@
             >
               <div class="flex items-center justify-between px-6 pt-6 pb-4">
                 <h3 id="dialog-title" class="text-2xl font-bold text-blue-600">
-                  worker details
+                  Assign workers
                 </h3>
                 <button
                   command="close"
@@ -289,7 +289,7 @@
       </el-dialog>
       <button
         class="hidden"
-        id="openWorkerInfo"
+        id="openAssignModal"
         command="show-modal"
         commandfor="AssignworkerModal"
       ></button>
@@ -358,32 +358,38 @@
             </button>
           </div>
         </div> -->
-          <div class="floor-plan-grid w-full rounded-md  ">
+          <div class="floor-plan-grid w-full rounded-md">
             <!-- CONFERENCE -->
-            <div class="conference w-full h-auto flex justify-center">
-              <div class="relative w-full h-full">
-                <div
-                  class="w-full h-full flex items-end p-3 text-white text-xl font-semibold"
-                  style="
-                    background-image: url('assets/meetingRoom (1).png');
-                    background-size: 100% 100%;
-                    background-repeat: no-repeat;
-                  "
-                >
-                  Conference
-                </div>
+            <div class="conference w-full h-[260px] grid 
+            place-items-center text-white text-xl font-semibold"
+     style="
+       background-image: url('assets/meetingRoom (1).png');
+       background-size: 100% 100%;
+       background-repeat: no-repeat;
+     "
+>
 
-                <button
-                  class="room-btn absolute z-10 border-2 bg-blue-600 text-white w-10 h-10 rounded-full flex items-center justify-center shadow-lg hover:bg-blue-700 duration-200 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transform"
-                >
-                  <iconify-icon
-                    icon="zondicons:add-solid"
-                    width="20"
-                    height="20"
-                  ></iconify-icon>
-                </button>
-              </div>
-            </div>
+    
+    <div class="self-end p-3 justify-self-start">
+      Conference
+    </div>
+
+    <div class="place-self-center flex room-workers">
+      <div>anas</div>
+      <div>anas</div>
+    </div>
+       
+    <button
+      data-room-name="conference"
+      class="room-btn border-2 place-self-center bg-blue-600 text-white w-10 h-10 rounded-full 
+             flex items-center justify-center shadow-lg hover:bg-blue-700 duration-200"
+    >
+      <iconify-icon icon="zondicons:add-solid" width="20" height="20"></iconify-icon>
+    </button>
+
+</div>
+
+
 
             <!-- SERVERS -->
             <div class="servers w-full h-auto flex justify-center">
@@ -400,6 +406,7 @@
                 </div>
 
                 <button
+                  data-room-name="servers"
                   class="room-btn absolute z-10 border-2 bg-blue-600 text-white w-10 h-10 rounded-full flex items-center justify-center shadow-lg hover:bg-blue-700 duration-200 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transform"
                 >
                   <iconify-icon
@@ -426,6 +433,7 @@
                 </div>
 
                 <button
+                  data-room-name="security"
                   class="room-btn absolute z-10 border-2 bg-blue-600 text-white w-10 h-10 rounded-full flex items-center justify-center shadow-lg hover:bg-blue-700 duration-200 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transform"
                 >
                   <iconify-icon
@@ -452,6 +460,7 @@
                 </div>
 
                 <button
+                  data-room-name="reception"
                   class="room-btn absolute z-10 border-2 bg-blue-600 text-white w-10 h-10 rounded-full flex items-center justify-center shadow-lg hover:bg-blue-700 duration-200 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transform"
                 >
                   <iconify-icon
@@ -478,6 +487,7 @@
                 </div>
 
                 <button
+                  data-room-name="staff"
                   class="room-btn absolute z-10 border-2 bg-blue-600 text-white w-10 h-10 rounded-full flex items-center justify-center shadow-lg hover:bg-blue-700 duration-200 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transform"
                 >
                   <iconify-icon
@@ -504,6 +514,7 @@
                 </div>
 
                 <button
+                  data-room-name="vault"
                   class="room-btn absolute z-10 border-2 bg-blue-600 text-white w-10 h-10 rounded-full flex items-center justify-center shadow-lg hover:bg-blue-700 duration-200 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transform"
                 >
                   <iconify-icon
@@ -518,7 +529,10 @@
         </div>
       </main>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindplus/elements@1" type="module"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/@tailwindplus/elements@1"
+      type="module"
+    ></script>
     <script defer type="module" src="script.js"></script>
     <script src="https://code.iconify.design/iconify-icon/3.0.0/iconify-icon.min.js"></script>
   </body>
