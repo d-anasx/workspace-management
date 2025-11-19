@@ -1,13 +1,13 @@
 import { validateInput } from "./support/validation.js";
 
 let workers = [];
-let assignWorkers = [{conference : [] , max : 6}, 
-                      {servers : [] , max : 2},
-                      {security : [] , max : 2},
-                      {reception : [] , max : 6},
-                      {staff : [] , max : 2},
-                      {vault : [] , max : 2}
-                    ]
+let assignWorkers = {conference : {staff : [] , max : 6}, 
+                     servers : {staff : [] , max : 2},
+                     security : {staff : [] , max : 2},
+                     reception :{staff : [] , max : 6},
+                     staff :{staff : [] , max : 2},
+                     vault :{staff : [] , max : 2}
+}
 let idCounter = 1;
 let idToModify ;
 let isValidURL = true;
@@ -299,8 +299,12 @@ function formatDate(dateString) {
 function handleTransition(div , classes=''){
       div.className = classes + ' ' + 'opacity-0 scale-120  -translate-y-2 transition-all duration-300';
       setTimeout(() => {
-  div.className = classes + ' ' + 'opacity-100 scale-100 translate-y-0 transition-all duration-300';
-}, 100);
+  div.className = classes + ' ' + 'opacity-120 scale-100 translate-y-0 transition-all duration-300';
+}, 10);
+
+setTimeout(() => {
+  div.className = classes + ' ' + 'opacity-100 scale-none translate-y-0 transition-all duration-300';
+}, 10);
 }
 
 function cleanModal(){
@@ -417,26 +421,25 @@ function assignWorkerToRoom(workerId , roomName){
   
     let areaContainer = document.getElementById('roomName');
     let worker = workers.find(w => w.id == workerId);
-    let room = assignWorkers.find(r => r[roomName]);
 
-    if (room[roomName].length >= room.max) {
-    alert(`${roomName} is at maximum capacity (${room.max} workers)`);
+    if (assignWorkers[roomName].staff.length >= assignWorkers[roomName].max) {
+    alert(`${roomName} is at maximum capacity (${assignWorkers[roomName].max} workers)`);
     return;
   }
   
-  room[roomName].push(worker);
+  assignWorkers[roomName].staff.push(worker);
   let workerIndex = workers.findIndex(w => w.id == workerId);
   if (workerIndex !== -1) {
     workers.splice(workerIndex, 1);
   }
   renderWorkers()
   renderRoomWorkers(roomName);
+  diplayUnassigned(ArrayByRole(roomName))
+  document.getElementById('closeAssignModal').click();
 
   }
 
 function renderRoomWorkers(roomName) {
-  let room = assignWorkers.find(r => r[roomName]);
-  
   
   let roomContainer = document.querySelector(`.${roomName.toLowerCase()}`);
   
@@ -446,7 +449,7 @@ function renderRoomWorkers(roomName) {
   
 
   // Add worker badges
-  room[roomName].forEach(worker => {
+  assignWorkers[roomName].staff.forEach(worker => {
     const workerBadge = document.createElement('div');
     workerBadge.className =
        ' relative bg-white/95 backdrop-blur-sm flex items-center flex-nowrap w-fit h-fit rounded-full p-0.5 shadow-lg hover:bg-white transition-all cursor-pointer';
@@ -457,22 +460,28 @@ function renderRoomWorkers(roomName) {
         alt="${worker.name}"
         class="w-10 h-10 rounded-full object-cover"
       />
-      <button class="absolute opacity-0 top-0 left-0 w-full h-full flex items-center justify-center hover:bg-red-600/60 hover:opacity-100 duration-300  text-white rounded-full "
-      onclick="event.stopPropagation(); unassignWorkerFromRoom('${worker.id}', '${roomName}')" >
+      <button data-id = "${worker.id}"  class="unassignBtn absolute opacity-0 top-0 left-0 w-full h-full flex items-center justify-center hover:bg-red-600/60 hover:opacity-100 duration-300  text-white rounded-full " 
+      >
       <iconify-icon icon="lets-icons:back" width="24" height="24"  style="color: #130202"></iconify-icon>
       </button>
 
     `;
 
     workerDisplay.appendChild(workerBadge);
+    
   });
+
+  let unassignBtns = document.querySelectorAll('.unassignBtn');
+    unassignBtns.forEach((btn)=>{
+      btn.addEventListener("click", () => unassignWorkerFromRoom(btn.dataset.id , roomName) )
+    })
   
   // Update room button
   let roomBtn = roomContainer.querySelector('.room-btn');
-  if (room[roomName].length > 0) {
+  if (assignWorkers[roomName].staff.length > 0) {
     roomBtn.innerHTML = `
       <iconify-icon icon="mdi:account-check" width="20" height="20"></iconify-icon>
-      <span class="text-xs font-bold">${room[roomName].length}/${room.max}</span>
+      <span class="text-xs font-bold">${assignWorkers[roomName].staff.length}/${assignWorkers[roomName].max}</span>
     `;
     roomBtn.className = roomBtn.className.replace('bg-blue-600', 'bg-green-600').replace('hover:bg-blue-700', 'hover:bg-green-700');
   } else {
@@ -486,11 +495,11 @@ function renderRoomWorkers(roomName) {
 function ArrayByRole(role){
   switch(role){
     case 'reception':
-      return workers.filter(worker=> worker.role == 'Receptionist' ); 
+      return workers.filter(worker=> worker.role == 'Receptionist' || 'Cleaning' ); 
     case 'servers':
-      return workers.filter(worker=> worker.role == 'IT Guy' );
+      return workers.filter(worker=> worker.role == 'IT Guy' || 'Cleaning' );
     case 'security':
-      return workers.filter(worker=> worker.role == 'Security' );
+      return workers.filter(worker=> worker.role == 'Security' || 'Cleaning' );
     case 'vault':
       return workers.filter(worker=> !(worker.role == 'Cleaning') );
     default :
@@ -500,26 +509,25 @@ function ArrayByRole(role){
 
   
   function unassignWorkerFromRoom(workerId, roomName) {
-  let room = assignWorkers.find(r => r[roomName]);
   
-  if (!room) return;
+    console.log(workerId , roomName);
+    
   
-  const workerIndex = room[roomName].findIndex(w => w.id == workerId);
+  const workerIndex = assignWorkers[roomName].staff.findIndex(w => w.id == workerId);
   
   if (workerIndex !== -1) {
-    const worker = room[roomName][workerIndex];
+    const worker = assignWorkers[roomName].staff[workerIndex];
     
     
-    room[roomName].splice(workerIndex, 1);
+    assignWorkers[roomName].staff.splice(workerIndex, 1);
     
    
     workers.push(worker);
     
     
-    renderUnassignedWorkers();
+    renderWorkers();
     renderRoomWorkers(roomName);
     
-    console.log(`${worker.name} unassigned from ${roomName}`);
   }
 }
   
