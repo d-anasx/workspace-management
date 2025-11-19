@@ -3,6 +3,7 @@ import { validateInput } from "./support/validation.js";
 let workers = [];
 let idCounter = 1;
 let idToModify ;
+let isValidURL = true;
 let workerForm = document.querySelector('#workerForm');
 let pictureInput = document.querySelector('#worker_photo');
 let addExpButton = document.querySelector('#addExp');
@@ -12,6 +13,7 @@ workerForm.addEventListener('submit',(e)=>submitWorkerData(e,idToModify));
 pictureInput.addEventListener('input',picturePreview);
 addExpButton.addEventListener("click",addExperience)
 addWorkerButton.addEventListener('click', cleanModal)
+document.querySelector("#picture").onerror = () =>{isValidURL = false}
 window.fillWorkerForm = fillWorkerForm;
 window.openWorkerModal = openWorkerModal;
 
@@ -102,12 +104,14 @@ function submitWorkerData(e,id = null){
         modifyoldWorker(id,workerObject,experiences)
     }
     else{
+      
+      (!isValidURL) ? workerObject.url = 'assets/avatar.png' : workerObject.url
       addNewWorker(workerObject , experiences)
-      handleURLError(workerObject)
     }
 
     //cleanup
     idToModify = null;
+    isValidURL = true
     cleanModal()
     document.getElementById("workerModal").close();
     renderWorkers();
@@ -292,15 +296,13 @@ function cleanModal(){
   document.getElementById("picture").src='';
 }
 
-//not working
-function handleURLError(worker){
+
+
+
   
-  document.querySelector("#picture").onerror = () =>{
-    worker.url = "assets/avatar.png";
-    
-  }
-  console.log(worker);  
-}
+  
+
+
 
 
 

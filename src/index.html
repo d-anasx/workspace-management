@@ -234,11 +234,66 @@
         </dialog>
       </el-dialog>
       <button
+      class="hidden"
         id="openWorkerInfo"
         command="show-modal"
         commandfor="workerInfosModal"
-        style="display: none"
       ></button>
+
+       <!-- Assign modal Dialog -->
+      <el-dialog>
+        <dialog
+          id="AssignworkerModal"
+          aria-labelledby="dialog-title"
+          class="fixed inset-0 size-auto max-h-none max-w-none overflow-y-auto bg-transparent backdrop:bg-transparent"
+        >
+          <el-dialog-backdrop
+            class="fixed inset-0 bg-black/50 transition-opacity data-closed:opacity-0 data-enter:duration-300 data-enter:ease-out data-leave:duration-200 data-leave:ease-in"
+          ></el-dialog-backdrop>
+          <div
+            tabindex="0"
+            class="flex min-h-full items-center justify-center p-4 text-center focus:outline-none sm:p-0"
+          >
+            <el-dialog-panel
+              class="relative transform overflow-hidden rounded-xl bg-white text-left shadow-2xl transition-all data-closed:translate-y-4 data-closed:opacity-0 data-enter:duration-300 data-enter:ease-out data-leave:duration-200 data-leave:ease-in sm:my-8 sm:w-full sm:max-w-2xl data-closed:sm:translate-y-0 data-closed:sm:scale-95"
+            >
+              <div class="flex items-center justify-between px-6 pt-6 pb-4">
+                <h3 id="dialog-title" class="text-2xl font-bold text-blue-600">
+                  worker details
+                </h3>
+                <button
+                  command="close"
+                  commandfor="AssignworkerModal"
+                  class="text-gray-400 hover:text-gray-600 text-2xl leading-none"
+                >
+                  &times;
+                </button>
+              </div>
+              <div
+                id="list-to-assign"
+                class="px-6 py-4 max-h-[70vh] overflow-y-auto shadow-xl"
+              ></div>
+              <div class="bg-gray-50 px-6 py-4 flex flex-row-reverse gap-3">
+                <button
+                  type="button"
+                  command="close"
+                  commandfor="AssignworkerModal"
+                  class="px-6 py-3 bg-gray-500 text-white duration-200 rounded-lg font-semibold hover:bg-gray-600"
+                >
+                  Cancel
+                </button>
+              </div>
+            </el-dialog-panel>
+          </div>
+        </dialog>
+      </el-dialog>
+      <button
+        class="hidden"
+        id="openWorkerInfo"
+        command="show-modal"
+        commandfor="AssignworkerModal"
+      ></button>
+
       <main class="flex-1 p-4 overflow-auto md:place-self-center">
         <div class="relative w-full h-fit bg-white rounded-xl shadow-xl">
           <!-- <img src="assets/plan.jpg" class="absolute inset-0 w-full h-full" />
