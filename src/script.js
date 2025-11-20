@@ -1,5 +1,6 @@
 import { validateInput,validateDateRange } from "./support/validation.js";
 
+const API = 'data/workers.json'
 let workers = [];
 let assignWorkers = {conference : {staff : [] , max : 6}, 
                      servers : {staff : [] , max : 2},
@@ -8,7 +9,7 @@ let assignWorkers = {conference : {staff : [] , max : 6},
                      staff :{staff : [] , max : 2},
                      vault :{staff : [] , max : 2}
 }
-let idCounter = 1;
+let idCounter = 11;
 let idToModify ;
 let isValidURL = true;
 let workerForm = document.querySelector('#workerForm');
@@ -157,8 +158,10 @@ function submitWorkerData(e, id = null) {
 
 function addNewWorker(workerObject, experiences){
         workerObject.id = idCounter++;
+        workerObject.position = "unassigned";
         workerObject.experiences = experiences;
         workers.push(workerObject);
+        
 }
 
 function modifyoldWorker(id, workerObject, experiences){
@@ -237,8 +240,11 @@ function fillWorkerForm(workerId) {
     });
 }
 
-function openWorkerModal(workerId) {
-  let worker = workers.find((worker) => worker.id == workerId);
+function openWorkerModal(workerId,roomName=null) {
+  console.log(roomName)
+  let worker = roomName ? assignWorkers[roomName].staff.find((worker) => worker.id == workerId) 
+                        :  workers.find((worker) => worker.id == workerId)
+  
   let detailsContainer = document.getElementById('details-container');
 
 
@@ -276,6 +282,11 @@ function openWorkerModal(workerId) {
           <div>
             <p class="text-sm text-gray-500">Phone</p>
             <p class="font-medium text-gray-800">${worker.phone}</p>
+          </div>
+
+          <div>
+            <p class="text-sm text-gray-500">Position</p>
+            <p class="font-medium text-gray-800">${worker.position}</p>
           </div>
         </div>
       </div>
@@ -474,9 +485,12 @@ function renderRoomWorkers(roomName) {
   assignWorkers[roomName].staff.forEach(worker => {
     const workerBadge = document.createElement('div');
     workerBadge.className =
-       ' relative bg-white/95 backdrop-blur-sm flex items-center flex-nowrap w-fit h-fit rounded-full p-0.5 shadow-lg hover:bg-white transition-all cursor-pointer';
+       ' relative bg-white/95 backdrop-blur-sm flex items-center flex-nowrap w-fit h-fit rounded-full  shadow-lg hover:bg-white transition-all cursor-pointer';
 
     workerBadge.innerHTML = `
+      
+      <iconify-icon onclick="openWorkerModal(${worker.id},'${roomName}')" class="absolute -right-4 -top-2 p-0.5 rounded-full flex items-center justify-center hover:bg-blue-400/60 duration-300" icon="material-symbols:info-outline-rounded" width="24" height="24"  style="color: #0b5d93"></iconify-icon>
+      
       <img 
         src="${worker.url}" 
         alt="${worker.name}"
@@ -490,6 +504,10 @@ function renderRoomWorkers(roomName) {
     `;
 
     workerDisplay.appendChild(workerBadge);
+    //changing worker position
+    worker.position = roomName
+    console.log(worker);
+    
     
   });
 
@@ -499,7 +517,7 @@ function renderRoomWorkers(roomName) {
       btn.addEventListener("click", () => unassignWorkerFromRoom(btn.dataset.id , roomName) )
     })
   
-  
+
   // Update room button and red overlay
   let roomBtn = roomContainer.querySelector('.room-btn');
   if (assignWorkers[roomName].staff.length > 0) {
@@ -521,11 +539,11 @@ function renderRoomWorkers(roomName) {
 function ArrayByRole(room){
   switch(room){
     case 'reception':
-      return workers.filter(worker=> worker.role === 'Receptionist' || worker.role === 'Cleaning' ); 
+      return workers.filter(worker=> worker.role === 'Receptionist' || worker.role === 'Cleaning' || worker.role === 'Manager' ); 
     case 'servers':
-      return workers.filter(worker=> worker.role === 'IT Guy' || worker.role === 'Cleaning' );
+      return workers.filter(worker=> worker.role === 'IT Guy' || worker.role === 'Cleaning' || worker.role === 'Manager' );
     case 'security':
-      return workers.filter(worker=> worker.role === 'Security' || worker.role == 'Cleaning' );
+      return workers.filter(worker=> worker.role === 'Security' || worker.role == 'Cleaning' || worker.role === 'Manager' );
     case 'vault':
       return workers.filter(worker=> !(worker.role === 'Cleaning') );
     default :
@@ -534,7 +552,7 @@ function ArrayByRole(room){
   }
 
   
-  function unassignWorkerFromRoom(workerId, roomName) {
+function unassignWorkerFromRoom(workerId, roomName) {
   
     console.log(workerId , roomName);
     
@@ -542,12 +560,13 @@ function ArrayByRole(room){
   const workerIndex = assignWorkers[roomName].staff.findIndex(w => w.id == workerId);
   
   if (workerIndex !== -1) {
-    const worker = assignWorkers[roomName].staff[workerIndex];
+    let worker = assignWorkers[roomName].staff[workerIndex];
     
     
     assignWorkers[roomName].staff.splice(workerIndex, 1);
     
-   
+    //changing worker position to unassigned
+    worker.position = "unassigned"
     workers.push(worker);
     
     
@@ -556,9 +575,29 @@ function ArrayByRole(room){
     
   }
 }
+
+
+async function getData() {
+    // if (localStorage.getItem("test")) {
+    //   result = JSON.parse(localStorage.getItem("test"));
+    //   displayData();
+    //   getTotalEvents();
+    //   return;
+    // }
+
+    try {
+      const response = await fetch(API);
+      if (!response.ok) throw new Error(`Response status: ${response.status}`);
+      workers = await response.json();
+      localStorage.setItem("data", JSON.stringify(workers));
+      renderWorkers();
+    } catch (error) {
+      console.error(error.message);
+    }
+  }
   
 
-
+getData()
 
 
 

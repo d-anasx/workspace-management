@@ -39,7 +39,6 @@
 }
 
 .overlay {
-  background-color: rgba(255, 2, 2, 0.5); /* overlay color */
   animation: pulseFade 1s infinite ease-in-out;
 }
 

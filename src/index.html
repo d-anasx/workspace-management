@@ -8,8 +8,8 @@
   </head>
   <body class="bg-gray-100">
     <div class="base flex h-screen">
-      <section class="w-64 shadow-md p-6 flex flex-col">
-        <h1 class="text-xl font-bold text-blue-600">Unassigned Members</h1>
+      <section class="w-64 shadow-md p-6 gap-1 flex flex-col items-center overflow-y-auto">
+        <h1 class="text-xl font-bold  text-blue-600">Unassigned Workers</h1>
         <div class="workers">
           <div class="flex justify-center opacity-40">
             <p>no data found</p>
@@ -24,9 +24,13 @@
           id="addWorkerBtn"
           command="show-modal"
           commandfor="workerModal"
-          class="mt-auto bg-blue-600 text-white py-3 rounded-xl font-semibold hover:bg-blue-700 duration-300"
+          class=" border-2 p-4 bg-blue-600 text-white w-11 h-11 rounded-full flex items-center justify-center shadow-lg hover:bg-blue-700 duration-200"
         >
-          Add New Worker
+          <iconify-icon
+                  icon="zondicons:add-solid"
+                  width="20"
+                  height="20"
+          ></iconify-icon>
         </button>
       </section>
       <!-- add Worker Modal Dialog -->
@@ -86,6 +90,7 @@
                       class="personal w-full px-4 py-2 rounded-lg bg-gray-100 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white transition-shadow shadow-sm"
                     >
                       <option>Receptionist</option>
+                      <option>Manager</option>
                       <option>IT Guy</option>
                       <option>Security</option>
                       <option>Cleaning</option>
@@ -307,13 +312,14 @@
                 background-repeat: no-repeat;
               "
             >
+            <div class="overlay absolute inset-0 rounded-xl"></div>
               <div class="self-end p-3 justify-self-start">Conference</div>
 
-              <div class="place-self-center flex room-workers"></div>
+              <div class="place-self-center z-10 flex room-workers"></div>
 
               <button
                 data-room-name="conference"
-                class="room-btn border-2 place-self-center bg-blue-600 text-white w-11 h-11 rounded-full flex items-center justify-center shadow-lg hover:bg-blue-700 duration-200"
+                class="room-btn border-2 z-20 place-self-center bg-blue-600 text-white w-11 h-11 rounded-full flex items-center justify-center shadow-lg hover:bg-blue-700 duration-200"
               >
                 <iconify-icon
                   icon="zondicons:add-solid"
@@ -332,11 +338,11 @@
                 background-repeat: no-repeat;
               "
             >
-              <div class="overlay absolute inset-0 bg-red-600/40 rounded-xl"></div>
+              <div class="overlay bg-red-600/50 absolute inset-0 rounded-xl"></div>
 
               <div class="self-end p-3 justify-self-start">Servers</div>
 
-              <div class="place-self-center flex room-workers"></div>
+              <div class="place-self-center z-10 flex room-workers"></div>
 
               <button
                 data-room-name="servers"
@@ -359,11 +365,11 @@
                 background-repeat: no-repeat;
               "
             >
-              <div class="overlay absolute inset-0 bg-red-600/40 rounded-xl"></div>
+              <div class="overlay absolute inset-0 bg-red-600/50  rounded-xl"></div>
 
               <div class="self-end p-3 justify-self-start">Security</div>
 
-              <div class="place-self-center flex room-workers"></div>
+              <div class="place-self-center z-10 flex room-workers"></div>
 
               <button
                 data-room-name="security"
@@ -379,18 +385,18 @@
 
             <!-- RECEPTION -->
             <div
-              class="relative reception w-full h-full grid place-items-center "
+              class="relative reception w-full h-full  grid place-items-center "
               style="
                 background-image: url('assets/Reception\ \(1\).png');
                 background-size: 100% 100%;
                 background-repeat: no-repeat;
               "
             >
-              <div class=" overlay absolute inset-0 bg-red-600/40 rounded-xl"></div>
+              <div class=" overlay absolute bg-red-600/50 inset-0 rounded-xl"></div>
 
               <div class="self-end p-3 justify-self-start">Reception</div>
 
-              <div class="place-self-center flex room-workers"></div>
+              <div class="place-self-center z-10 flex room-workers"></div>
 
               <button
                 data-room-name="reception"
@@ -413,13 +419,14 @@
                 background-repeat: no-repeat;
               "
             >
+            <div class="overlay absolute inset-0 rounded-xl"></div>
               <div class="self-end p-3 justify-self-start">Staff room</div>
 
-              <div class="place-self-center flex room-workers"></div>
+              <div class="place-self-center z-10 flex room-workers"></div>
 
               <button
                 data-room-name="staff"
-                class="room-btn border-2 place-self-center bg-blue-600 text-white w-11 h-11 rounded-full flex items-center justify-center shadow-lg hover:bg-blue-700 duration-200"
+                class="room-btn border-2 z-20 place-self-center bg-blue-600 text-white w-11 h-11 rounded-full flex items-center justify-center shadow-lg hover:bg-blue-700 duration-200"
               >
                 <iconify-icon
                   icon="zondicons:add-solid"
@@ -438,13 +445,14 @@
                 background-repeat: no-repeat;
               "
             >
+            <div class="overlay absolute inset-0 rounded-xl"></div>
               <div class="self-end p-3 justify-self-start">Vault</div>
 
               <div class="place-self-center flex room-workers"></div>
 
               <button
                 data-room-name="vault"
-                class="room-btn border-2 place-self-center bg-blue-600 text-white w-11 h-11 rounded-full flex items-center justify-center shadow-lg hover:bg-blue-700 duration-200"
+                class="room-btn border-2 z-20 place-self-center bg-blue-600 text-white w-11 h-11 rounded-full flex items-center justify-center shadow-lg hover:bg-blue-700 duration-200"
               >
                 <iconify-icon
                   icon="zondicons:add-solid"
