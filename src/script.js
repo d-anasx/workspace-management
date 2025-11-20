@@ -482,7 +482,7 @@ function renderRoomWorkers(roomName) {
   
 
   // Add worker badges
-  assignWorkers[roomName].staff.forEach(worker => {
+  assignWorkers[roomName].staff.forEach(worker => { 
     const workerBadge = document.createElement('div');
     workerBadge.className =
        ' relative bg-white/95 backdrop-blur-sm flex items-center flex-nowrap w-fit h-fit rounded-full  shadow-lg hover:bg-white transition-all cursor-pointer';
