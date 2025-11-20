@@ -69,80 +69,81 @@ function renderWorkers(){
 }
 
 //function that handle the submit of the form
-function submitWorkerData(e,id = null){
-  console.log(id)
-    e.preventDefault()
-    
-    let personalInputs = workerForm.querySelectorAll(".personal");
-    let experienceBlocks = workerForm.querySelectorAll(".experience");
-    let workerObject = {};
-    let experiences = [];
-    let isValidate = true;
+function submitWorkerData(e, id = null) {
+  e.preventDefault();
 
-    //handling expriences fields
-    experienceBlocks.forEach((exp)=>{
-        let expInputs = exp.querySelectorAll("input");
-        let expObject = {};
-        let fromDate = "";
-        let toDate = "";
-        expInputs.forEach((input)=>{
-            let validationResult = validateInput(input.value, input.name)
-            if (!validationResult.valid){
-                input.nextElementSibling.textContent = validationResult.error;
-                isValidate = false;
-            }else{
-                input.nextElementSibling.textContent = "";
-                expObject[input.name] = input.value;
-                isValidate = true;
-            }
-            if (input.name === "from") fromDate = input.value;
-            if (input.name === "to") toDate = input.value;
-            
-        });
-        const dateResult = validateDateRange(fromDate, toDate);
-        console.log(dateResult);
-        
-        if (!dateResult.valid) {
-          isValidate = false;
-          const toInput = [...expInputs].find(i => i.name === "to");
-          toInput.nextElementSibling.textContent = dateResult.error;
-        }else {experiences.push(expObject)}
-    })
-  
-    // experiences.length == 0 ? isValidate = true : isValidate
-    
-        personalInputs.forEach((input)=>{
-            let validationResult = validateInput(input.value, input.name)
-            if (!validationResult.valid){
-                input.nextElementSibling.textContent = validationResult.error
-                isValidate = false
-            }else{
-                input.nextElementSibling.textContent = ""
-                workerObject[input.name] = input.value
-                isValidate = true
-            }
-    })
-        
+  let personalInputs = workerForm.querySelectorAll(".personal");
+  let experienceBlocks = workerForm.querySelectorAll(".experience");
+  let workerObject = {};
+  let experiences = [];
+  let isValidate = true;
 
-    if(isValidate){
-      (!isValidURL) ? workerObject.url = 'assets/avatar.png' : workerObject.url
-      if(id){
-        modifyoldWorker(id,workerObject,experiences)
+  //  Validate personal inputs 
+  personalInputs.forEach((input) => {
+    let validationResult = validateInput(input.value, input.name);
+    if (!validationResult.valid) {
+      input.nextElementSibling.textContent = validationResult.error;
+      isValidate = false;
+    } else {
+      input.nextElementSibling.textContent = "";
+      workerObject[input.name] = input.value;
     }
-    else{
-      addNewWorker(workerObject , experiences)
+  });
+
+  // Validate experiences inputs
+  experienceBlocks.forEach((exp) => {
+    let expInputs = exp.querySelectorAll("input");
+    let expObject = {};
+    let fromDate = "";
+    let toDate = "";
+
+    expInputs.forEach((input) => {
+      let result = validateInput(input.value, input.name);
+
+      if (!result.valid) {
+        input.nextElementSibling.textContent = result.error;
+        isValidate = false;
+      } else {
+        input.nextElementSibling.textContent = "";
+        expObject[input.name] = input.value;
+      }
+
+      if (input.name === "from") fromDate = input.value;
+      if (input.name === "to") toDate = input.value;
+    });
+
+    const dateResult = validateDateRange(fromDate, toDate);
+
+    if (!dateResult.valid) {
+      const toInput = [...expInputs].find(i => i.name === "to");
+      toInput.nextElementSibling.textContent = dateResult.error;
+      isValidate = false;
+    } else {
+      experiences.push(expObject);
+    }
+  });
+
+
+  // submit if is valid
+  if (isValidate) {
+    if (!isValidURL) workerObject.url = 'assets/avatar.png';
+
+    if (id) {
+      modifyoldWorker(id, workerObject, experiences);
+    } else {
+      addNewWorker(workerObject, experiences);
     }
 
-    //cleanup
+    // cleanup 
     idToModify = null;
-    isValidURL = true
-    cleanModal()
+    isValidURL = true;
+    cleanModal();
     document.getElementById("workerModal").close();
     renderWorkers();
-    document.querySelector('.experiences-container').innerHTML=''
-    
+    document.querySelector(".experiences-container").innerHTML = "";
   }
 }
+
 
 function addNewWorker(workerObject, experiences){
         workerObject.id = idCounter++;
