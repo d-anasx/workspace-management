@@ -31,7 +31,9 @@ searchInput.addEventListener('input', handleSearchInput)
 window.fillWorkerForm = fillWorkerForm;
 window.openWorkerModal = openWorkerModal;
 
-
+window.addEventListener('beforeunload', (e) =>{
+  localStorage.setItem("data", JSON.stringify(workers));
+})
 
 // function that render workers
 function renderWorkers(filtredWorkers = null){
@@ -239,7 +241,7 @@ function fillWorkerForm(workerId) {
 
     if (worker.url) {
         document.querySelector("#picture").src = worker.url;
-        pictureInput.value = worker.url;
+        pictureInput.value = '';
     }
 
     let exp_container = document.querySelector('.experiences-container');
@@ -601,12 +603,11 @@ function handleSearchInput(e){
 
 
 async function getData() {
-    // if (localStorage.getItem("test")) {
-    //   result = JSON.parse(localStorage.getItem("test"));
-    //   displayData();
-    //   getTotalEvents();
-    //   return;
-    // }
+    if (localStorage.getItem("data")) {
+      workers = JSON.parse(localStorage.getItem("data"));
+      renderWorkers();
+      return;
+    }
 
     try {
       const response = await fetch(API);
