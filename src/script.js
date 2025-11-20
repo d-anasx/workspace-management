@@ -17,6 +17,7 @@ let pictureInput = document.querySelector('#worker_photo');
 let addExpButton = document.querySelector('#addExp');
 let addWorkerButton = document.querySelector('#addWorkerBtn');
 let assignButtons = document.querySelectorAll('.room-btn');
+let searchInput = document.getElementById('search');
 
 workerForm.addEventListener('submit',(e)=>submitWorkerData(e,idToModify));
 pictureInput.addEventListener('input',picturePreview);
@@ -26,17 +27,32 @@ document.querySelector("#picture").onerror = () =>{isValidURL = false}
 assignButtons.forEach((btn)=>{
   btn.addEventListener("click",handleAssign);
 })
+searchInput.addEventListener('input', handleSearchInput)
 window.fillWorkerForm = fillWorkerForm;
 window.openWorkerModal = openWorkerModal;
 
 
 
 // function that render workers
-function renderWorkers(){
+function renderWorkers(filtredWorkers = null){
+    if(!filtredWorkers){
+      filtredWorkers = workers
+    }
     let workersList = document.querySelector('.workers');
     workersList.innerHTML = '';
 
-    workers.forEach((worker)=>{
+    if (filtredWorkers.length == 0) {workersList.innerHTML = `
+      <div class="flex justify-center opacity-40">
+          <p>no data found</p>
+            <iconify-icon
+              icon="lets-icons:sad-light"
+              width="24"
+              height="24"
+            ></iconify-icon>
+      </div>    
+          `}
+
+    else{filtredWorkers.forEach((worker)=>{
         workersList.innerHTML += `
             <div class="workerDiv group mt-4 p-4 rounded-2xl bg-linear-to-r from-slate-100 to-indigo-50 shadow-sm 
               hover:shadow-md hover:-translate-y-1 transition-all duration-300 flex items-center gap-4">
@@ -74,7 +90,7 @@ function renderWorkers(){
     workersList.childNodes.forEach((div)=>{
       handleTransition(div , "workerDiv mt-6 bg-linear-to-r from-zinc-400 to-indigo-200 rounded-xl p-1 px-2 flex items-center shadow gap-4 hover:shadow-md duration-300")
     })
-    
+  }
     
     
 }
@@ -574,6 +590,13 @@ function unassignWorkerFromRoom(workerId, roomName) {
     renderRoomWorkers(roomName);
     
   }
+}
+
+function handleSearchInput(e){
+  let searchTerm = e.target.value.toLowerCase();
+  let filtred = workers.filter(worker => worker.role.toLowerCase().includes(searchTerm));
+  console.log(workers)
+  renderWorkers(filtred);
 }
 
 
