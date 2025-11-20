@@ -27,4 +27,18 @@ function validateInput(value, type) {
   }
 }
 
-export { validateInput };
+function validateDateRange(from, to) {
+
+  const fromDate = new Date(from);
+  const toDate = new Date(to);
+
+  if (fromDate > toDate) {
+    return { valid: false, error: "End date must be after start date" };
+  }
+
+  return { valid: true, error: "" };
+}
+
+
+
+export { validateInput, validateDateRange };

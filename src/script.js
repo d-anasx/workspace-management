@@ -1,4 +1,4 @@
-import { validateInput } from "./support/validation.js";
+import { validateInput,validateDateRange } from "./support/validation.js";
 
 let workers = [];
 let assignWorkers = {conference : {staff : [] , max : 6}, 
@@ -83,6 +83,8 @@ function submitWorkerData(e,id = null){
     experienceBlocks.forEach((exp)=>{
         let expInputs = exp.querySelectorAll("input");
         let expObject = {};
+        let fromDate = "";
+        let toDate = "";
         expInputs.forEach((input)=>{
             let validationResult = validateInput(input.value, input.name)
             if (!validationResult.valid){
@@ -93,11 +95,21 @@ function submitWorkerData(e,id = null){
                 expObject[input.name] = input.value;
                 isValidate = true;
             }
+            if (input.name === "from") fromDate = input.value;
+            if (input.name === "to") toDate = input.value;
             
         });
-        if(isValidate) experiences.push(expObject)
+        const dateResult = validateDateRange(fromDate, toDate);
+        console.log(dateResult);
+        
+        if (!dateResult.valid) {
+          isValidate = false;
+          const toInput = [...expInputs].find(i => i.name === "to");
+          toInput.nextElementSibling.textContent = dateResult.error;
+        }else {experiences.push(expObject)}
     })
-    experiences.length == 0 ? isValidate = true : isValidate
+  
+    // experiences.length == 0 ? isValidate = true : isValidate
     
         personalInputs.forEach((input)=>{
             let validationResult = validateInput(input.value, input.name)
@@ -110,14 +122,14 @@ function submitWorkerData(e,id = null){
                 isValidate = true
             }
     })
+        
+
     if(isValidate){
+      (!isValidURL) ? workerObject.url = 'assets/avatar.png' : workerObject.url
       if(id){
-        (!isValidURL) ? workerObject.url = 'assets/avatar.png' : workerObject.url
         modifyoldWorker(id,workerObject,experiences)
     }
     else{
-      
-      (!isValidURL) ? workerObject.url = 'assets/avatar.png' : workerObject.url
       addNewWorker(workerObject , experiences)
     }
 
