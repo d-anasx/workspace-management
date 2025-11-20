@@ -37,24 +37,34 @@ function renderWorkers(){
 
     workers.forEach((worker)=>{
         workersList.innerHTML += `
-            <div 
-            class="workerDiv mt-6 bg-linear-to-r from-zinc-400 to-indigo-200 rounded-xl p-1 px-2 flex items-center shadow gap-4 hover:shadow-md duration-300"
-          >
-            <img
-              src="${worker.url}"
-              class="w-10 h-10 rounded-full border object-cover"
-            />
-            <div class="flex-1">
-              <h2 onclick="window.openWorkerModal(${worker.id})" class="font-semibold text-sm hover:scale-110 duration-200 hover:cursor-pointer">${worker.name}</h2>
-              <p class="text-gray-500 text-xs">${worker.role}</p>
-            </div>
-            <button command="show-modal"
-                    commandfor="workerModal" class="font-medium"
-                    id="modifyButton"
-                    onclick="window.fillWorkerForm(${worker.id});">
-            <iconify-icon class="text-green-600" icon="solar:pen-bold-duotone" width="24" height="24"></iconify-icon>
-            </button>
-          </div>
+            <div class="workerDiv group mt-4 p-4 rounded-2xl bg-linear-to-r from-slate-100 to-indigo-50 shadow-sm 
+              hover:shadow-md hover:-translate-y-1 transition-all duration-300 flex items-center gap-4">
+
+    <img src="${worker.url}"
+         class="w-12 h-12 rounded-full border border-indigo-200 shadow-sm object-cover" />
+
+    <div class="flex-1">
+      <h2 
+        onclick="window.openWorkerModal(${worker.id})"
+        class="text-sm font-semibold text-gray-800 cursor-pointer group-hover:text-indigo-600 
+               transition-all duration-200">
+        ${worker.name}
+      </h2>
+
+      <p class="text-xs text-gray-500 mt-0.5">${worker.role}</p>
+    </div>
+
+    <button 
+      command="show-modal"
+      commandfor="workerModal"
+      onclick="window.fillWorkerForm(${worker.id});"
+      class="p-2 rounded-xl flex items-center hover:bg-indigo-100 transition-all duration-200">
+      
+      <iconify-icon icon="solar:pen-bold-duotone" 
+                    width="22" height="22" 
+                    class="text-indigo-600"></iconify-icon>
+    </button>
+  </div>
     `;
     
     
@@ -432,7 +442,6 @@ function diplayUnassigned(workersToAssignArray){
 function assignWorkerToRoom(workerId , roomName){
   console.log(workerId , roomName);
   
-    let areaContainer = document.getElementById('roomName');
     let worker = workers.find(w => w.id == workerId);
 
     if (assignWorkers[roomName].staff.length >= assignWorkers[roomName].max) {
@@ -484,20 +493,24 @@ function renderRoomWorkers(roomName) {
     
   });
 
+
   let unassignBtns = document.querySelectorAll('.unassignBtn');
     unassignBtns.forEach((btn)=>{
       btn.addEventListener("click", () => unassignWorkerFromRoom(btn.dataset.id , roomName) )
     })
   
-  // Update room button
+  
+  // Update room button and red overlay
   let roomBtn = roomContainer.querySelector('.room-btn');
   if (assignWorkers[roomName].staff.length > 0) {
+    roomContainer.querySelector('.overlay').hidden = true;
     roomBtn.innerHTML = `
       <iconify-icon icon="mdi:account-check" width="20" height="20"></iconify-icon>
       <span class="text-xs font-bold">${assignWorkers[roomName].staff.length}/${assignWorkers[roomName].max}</span>
     `;
     roomBtn.className = roomBtn.className.replace('bg-blue-600', 'bg-green-600').replace('hover:bg-blue-700', 'hover:bg-green-700');
   } else {
+    roomContainer.querySelector('.overlay').hidden = false;
     roomBtn.innerHTML = `<iconify-icon icon="zondicons:add-solid" width="20" height="20"></iconify-icon>`;
     roomBtn.className = roomBtn.className.replace('bg-green-600', 'bg-blue-600').replace('hover:bg-green-700', 'hover:bg-blue-700');
   }
@@ -505,16 +518,16 @@ function renderRoomWorkers(roomName) {
   
 
 
-function ArrayByRole(role){
-  switch(role){
+function ArrayByRole(room){
+  switch(room){
     case 'reception':
-      return workers.filter(worker=> worker.role == 'Receptionist' || 'Cleaning' ); 
+      return workers.filter(worker=> worker.role === 'Receptionist' || worker.role === 'Cleaning' ); 
     case 'servers':
-      return workers.filter(worker=> worker.role == 'IT Guy' || 'Cleaning' );
+      return workers.filter(worker=> worker.role === 'IT Guy' || worker.role === 'Cleaning' );
     case 'security':
-      return workers.filter(worker=> worker.role == 'Security' || 'Cleaning' );
+      return workers.filter(worker=> worker.role === 'Security' || worker.role == 'Cleaning' );
     case 'vault':
-      return workers.filter(worker=> !(worker.role == 'Cleaning') );
+      return workers.filter(worker=> !(worker.role === 'Cleaning') );
     default :
       return workers; 
   }
