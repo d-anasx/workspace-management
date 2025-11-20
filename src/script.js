@@ -596,12 +596,12 @@ function unassignWorkerFromRoom(workerId, roomName) {
 
 function handleSearchInput(e){
   let searchTerm = e.target.value.toLowerCase();
-  let filtred = workers.filter(worker => worker.role.toLowerCase().includes(searchTerm));
+  let filtred = workers.filter(worker => worker.role.toLowerCase().includes(searchTerm) || worker.name.toLowerCase().includes(searchTerm));
   console.log(workers)
   renderWorkers(filtred);
 }
 
-
+ 
 async function getData() {
     if (localStorage.getItem("data")) {
       workers = JSON.parse(localStorage.getItem("data"));
