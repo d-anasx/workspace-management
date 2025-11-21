@@ -33,10 +33,10 @@ autoAssignBtn.addEventListener("click", autoAssignWorkers);
 window.fillWorkerForm = fillWorkerForm;
 window.openWorkerModal = openWorkerModal;
 
-window.addEventListener("beforeunload", (e) => {
-  let data = {workersArray : workers , assignedWorkers : assignWorkers}
-  localStorage.setItem("data", JSON.stringify(data));
-});
+// window.addEventListener("beforeunload", (e) => {
+//   let data = {workersArray : workers , assignedWorkers : assignWorkers}
+//   localStorage.setItem("data", JSON.stringify(data));
+// });
 
 // function that render workers
 function renderWorkers(filtredWorkers = null) {
@@ -557,6 +557,7 @@ function renderRoomWorkers(roomName) {
     workerDisplay.appendChild(workerBadge);
   });
 
+  //adding event listener to each button so we can unassign a worker
   let unassignBtns = document.querySelectorAll(".unassignBtn");
   unassignBtns.forEach((btn) => {
     btn.addEventListener("click", () =>
@@ -564,7 +565,11 @@ function renderRoomWorkers(roomName) {
     );
   });
 
-  // Update room button and red overlay
+  // Update UI - room button and red overlay
+  updateUiAfterAssign(roomName, roomContainer)
+}
+
+function updateUiAfterAssign(roomName, roomContainer){
   let roomBtn = roomContainer.querySelector(".room-btn");
   if (assignWorkers[roomName].staff.length > 0) {
     roomContainer.querySelector(".overlay").hidden = true;
@@ -581,6 +586,15 @@ function renderRoomWorkers(roomName) {
     roomBtn.className = roomBtn.className
       .replace("bg-green-600", "bg-blue-600")
       .replace("hover:bg-green-700", "hover:bg-blue-700");
+  }
+  if (assignWorkers[roomName].staff.length == assignWorkers[roomName].max){
+    roomBtn.className = roomBtn.className.replace("bg-green-600", "bg-red-600")
+                                          .replace("hover:bg-green-700", "hover:bg-red-700");
+      roomBtn.disabled = true;
+  }else{
+    roomBtn.className = roomBtn.className.replace("bg-red-600", "bg-green-600")
+                                          .replace("hover:bg-red-700", "hover:bg-green-700");
+    roomBtn.disabled = false;
   }
 }
 
