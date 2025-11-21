@@ -33,10 +33,10 @@ autoAssignBtn.addEventListener("click", autoAssignWorkers);
 window.fillWorkerForm = fillWorkerForm;
 window.openWorkerModal = openWorkerModal;
 
-// window.addEventListener("beforeunload", (e) => {
-//   let data = {workersArray : workers , assignedWorkers : assignWorkers}
-//   localStorage.setItem("data", JSON.stringify(data));
-// });
+window.addEventListener("beforeunload", (e) => {
+  let data = {workersArray : workers , assignedWorkers : assignWorkers}
+  localStorage.setItem("data", JSON.stringify(data));
+});
 
 // function that render workers
 function renderWorkers(filtredWorkers = null) {
@@ -650,10 +650,10 @@ function autoAssignWorkers() {
   let priorityZones = ["reception", "security", "servers"];
   let allZones = ["conference", "servers", "security", "reception", "staff", "vault"];
 
-  let workersCopy = [...workers]; 
+  // let workersCopy = [...workers]; 
 
-  while(workersCopy.length > 0){
-       workersCopy.forEach((worker) => {
+  while(workers.length > 0){
+       workers.forEach((worker) => {
     
       let possibleRooms = priorityZones.filter(room => canAssign(worker.id , room))
       if(possibleRooms.length === 0 ) return;
@@ -676,9 +676,9 @@ function autoAssignWorkers() {
   });
 
   //assign remaining workers to any other room
-  workersCopy = [...workers]; 
+  // workersCopy = [...workers]; 
   
-  workersCopy.forEach((worker) => {
+  workers.forEach((worker) => {
     let possibleRooms = allZones.filter(room => canAssign(worker.id, room));
     
     if (possibleRooms.length === 0) return;
