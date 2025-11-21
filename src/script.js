@@ -191,7 +191,11 @@ function modifyoldWorker(id, workerObject, experiences) {
   workers[index] = workerObject;
 }
 
-
+function generateImage(name){
+  console.log(name)
+  let splittedName = name.split(' ')
+  return `https://ui-avatars.com/api/?name=${splittedName[0]}+${splittedName[1]}&background=random`
+}
 
 //function that handle the preview of the picture
 function picturePreview(e) {
