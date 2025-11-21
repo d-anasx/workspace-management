@@ -1,171 +1,181 @@
-[
+{
+  "workersArray": [
     {
-        "name": "Tanya Warren",
-        "role": "Receptionist",
-        "url": "https://ui-avatars.com/api/?background=random/?name=Tanya+Warren",
-        "email": "tanya.warren@mailinator.com",
-        "phone": "+1 (697) 772-1064",
-        "position": "unassigned",
-        "id": 1,
-        "experiences": [
-            {
-                "company": "Avila and Perry Traders",
-                "expRole": "Front Desk Assistant",
-                "from": "2011-05-14",
-                "to": "2015-03-10"
-            },
-            {
-                "company": "Vasquez Barton LLC",
-                "expRole": "Reception Leader",
-                "from": "2015-04-01",
-                "to": "2023-07-22"
-            }
-        ]
+      "name": "Tanya Warren",
+      "role": "Receptionist",
+      "url": "https://ui-avatars.com/api/?name=anya+Warren&background=random",
+      "email": "tanya.warren@mailinator.com",
+      "phone": "+1 (697) 772-1064",
+      "position": "unassigned",
+      "id": 1,
+      "experiences": [
+        {
+          "company": "Avila and Perry Traders",
+          "expRole": "Front Desk Assistant",
+          "from": "2011-05-14",
+          "to": "2015-03-10"
+        },
+        {
+          "company": "Vasquez Barton LLC",
+          "expRole": "Reception Leader",
+          "from": "2015-04-01",
+          "to": "2023-07-22"
+        }
+      ]
     },
     {
-        "name": "Hassan Idrissi",
-        "role": "IT Guy",
-        "url": "https://ui-avatars.com/api/?background=random/?name=Hassan+Idrissi",
-        "email": "hassan.idrissi@mailinator.com",
-        "phone": "+1 (442) 500-1129",
-        "position": "unassigned",
-        "id": 2,
-        "experiences": [
-            {
-                "company": "TechNova Labs",
-                "expRole": "IT Support",
-                "from": "2016-09-01",
-                "to": "2019-11-18"
-            }
-        ]
+      "name": "Hassan Idrissi",
+      "role": "IT Guy",
+      "url": "https://ui-avatars.com/api/?name=Hassan+Idrissi&background=random",
+      "email": "hassan.idrissi@mailinator.com",
+      "phone": "+1 (442) 500-1129",
+      "position": "unassigned",
+      "id": 2,
+      "experiences": [
+        {
+          "company": "TechNova Labs",
+          "expRole": "IT Support",
+          "from": "2016-09-01",
+          "to": "2019-11-18"
+        }
+      ]
     },
     {
-        "name": "Alicia Gomez",
-        "role": "Cleaning",
-        "url": "https://ui-avatars.com/api/?background=random/?name=Alicia+Gomez",
-        "email": "alicia.gomez@mailinator.com",
-        "phone": "+1 (613) 285-7721",
-        "position": "unassigned",
-        "id": 3,
-        "experiences": []
+      "name": "Alicia Gomez",
+      "role": "Cleaning",
+      "url": "https://ui-avatars.com/api/?name=Alicia+Gomez&background=random",
+      "email": "alicia.gomez@mailinator.com",
+      "phone": "+1 (613) 285-7721",
+      "position": "unassigned",
+      "id": 3,
+      "experiences": []
     },
     {
-        "name": "Daniel Price",
-        "role": "Security",
-        "url": "https://ui-avatars.com/api/?background=random/?name=Daniel+Price",
-        "email": "daniel.price@mailinator.com",
-        "phone": "+1 (531) 893-2047",
-        "position": "unassigned",
-        "id": 4,
-        "experiences": [
-            {
-                "company": "GuardianForce Ltd",
-                "expRole": "Security Trainee",
-                "from": "2010-02-10",
-                "to": "2013-06-01"
-            },
-            {
-                "company": "SafePoint Global",
-                "expRole": "Security Officer",
-                "from": "2013-07-01",
-                "to": "2018-09-18"
-            },
-            {
-                "company": "SentinelCorp",
-                "expRole": "Security Supervisor",
-                "from": "2018-10-05",
-                "to": "2024-04-12"
-            }
-        ]
+      "name": "Daniel Price",
+      "role": "Security",
+      "url": "https://ui-avatars.com/api/?name=Daniel+Price&background=random",
+      "email": "daniel.price@mailinator.com",
+      "phone": "+1 (531) 893-2047",
+      "position": "unassigned",
+      "id": 4,
+      "experiences": [
+        {
+          "company": "GuardianForce Ltd",
+          "expRole": "Security Trainee",
+          "from": "2010-02-10",
+          "to": "2013-06-01"
+        },
+        {
+          "company": "SafePoint Global",
+          "expRole": "Security Officer",
+          "from": "2013-07-01",
+          "to": "2018-09-18"
+        },
+        {
+          "company": "SentinelCorp",
+          "expRole": "Security Supervisor",
+          "from": "2018-10-05",
+          "to": "2024-04-12"
+        }
+      ]
     },
     {
-        "name": "Monica Reyes",
-        "role": "Manager",
-        "url": "https://ui-avatars.com/api/?background=random/?name=Monica+Reyes",
-        "email": "monica.reyes@mailinator.com",
-        "phone": "+1 (704) 555-0198",
-        "position": "unassigned",
-        "id": 5,
-        "experiences": [
-            {
-                "company": "BrightPath HR",
-                "expRole": "HR Coordinator",
-                "from": "2012-08-01",
-                "to": "2016-12-20"
-            },
-            {
-                "company": "Summit People Solutions",
-                "expRole": "Senior HR Manager",
-                "from": "2017-01-05",
-                "to": "2023-06-30"
-            }
-        ]
+      "name": "Monica Reyes",
+      "role": "Manager",
+      "url": "https://ui-avatars.com/api/?name=Monica+Reyes&background=random",
+      "email": "monica.reyes@mailinator.com",
+      "phone": "+1 (704) 555-0198",
+      "position": "unassigned",
+      "id": 5,
+      "experiences": [
+        {
+          "company": "BrightPath HR",
+          "expRole": "HR Coordinator",
+          "from": "2012-08-01",
+          "to": "2016-12-20"
+        },
+        {
+          "company": "Summit People Solutions",
+          "expRole": "Senior HR Manager",
+          "from": "2017-01-05",
+          "to": "2023-06-30"
+        }
+      ]
     },
     {
-        "name": "Kevin Zhang",
-        "role": "IT Guy",
-        "url": "https://ui-avatars.com/api/?background=random/?name=Kevin+Zhang",
-        "email": "kevin.zhang@mailinator.com",
-        "phone": "+1 (415) 555-0123",
-        "position": "unassigned",
-        "id": 6,
-        "experiences": [
-            {
-                "company": "BlueWave Software",
-                "expRole": "Junior Developer",
-                "from": "2014-03-10",
-                "to": "2017-09-30"
-            },
-            {
-                "company": "NimbleApps Inc",
-                "expRole": "Frontend Engineer",
-                "from": "2017-10-01",
-                "to": "2024-02-28"
-            }
-        ]
+      "name": "Kevin Zhang",
+      "role": "IT Guy",
+      "url": "https://ui-avatars.com/api/?name=Kevin+Zhang&background=random",
+      "email": "kevin.zhang@mailinator.com",
+      "phone": "+1 (415) 555-0123",
+      "position": "unassigned",
+      "id": 6,
+      "experiences": [
+        {
+          "company": "BlueWave Software",
+          "expRole": "Junior Developer",
+          "from": "2014-03-10",
+          "to": "2017-09-30"
+        },
+        {
+          "company": "NimbleApps Inc",
+          "expRole": "Frontend Engineer",
+          "from": "2017-10-01",
+          "to": "2024-02-28"
+        }
+      ]
     },
     {
-        "name": "Priya Patel",
-        "role": "Cleaning",
-        "url": "https://ui-avatars.com/api/?background=random/?name=Priya+Patel",
-        "email": "priya.patel@mailinator.com",
-        "phone": "+1 (303) 555-0467",
-        "position": "unassigned",
-        "id": 7,
-        "experiences": [
-            {
-                "company": "LedgerWorks",
-                "expRole": "Staff Accountant",
-                "from": "2015-05-20",
-                "to": "2021-11-15"
-            }
-        ]
+      "name": "Priya Patel",
+      "role": "Cleaning",
+      "url": "https://ui-avatars.com/api/?name=Priya+Patel&background=random",
+      "email": "priya.patel@mailinator.com",
+      "phone": "+1 (303) 555-0467",
+      "position": "unassigned",
+      "id": 7,
+      "experiences": [
+        {
+          "company": "LedgerWorks",
+          "expRole": "Staff Accountant",
+          "from": "2015-05-20",
+          "to": "2021-11-15"
+        }
+      ]
     },
     {
-        "name": "Samuel Okoye",
-        "role": "Receptionist",
-        "url": "https://ui-avatars.com/api/?background=random/?name=Samuel+Okoye",
-        "email": "samuel.okoye@mailinator.com",
-        "phone": "+1 (212) 555-0789",
-        "position": "unassigned",
-        "id": 8,
-        "experiences": []
+      "name": "Samuel Okoye",
+      "role": "Receptionist",
+      "url": "https://ui-avatars.com/api/?name=Samuel+Okoye&background=random",
+      "email": "samuel.okoye@mailinator.com",
+      "phone": "+1 (212) 555-0789",
+      "position": "unassigned",
+      "id": 8,
+      "experiences": []
     },
     {
-        "name": "Elena Rossi",
-        "role": "Security",
-        "url": "https://ui-avatars.com/api/?background=random/?name=Elena+Rossi",
-        "email": "elena.rossi@mailinator.com",
-        "phone": "+1 (347) 555-0334",
-        "position": "unassigned",
-        "id": 9,
-        "experiences": [
-            {
-                "company": "CreativePulse Studio",
-                "expRole": "Graphic Designer",
-                "from": "2018-02-14",
-                "to": "2024-03-01"
-            }
-        ]
+      "name": "Elena Rossi",
+      "role": "Security",
+      "url": "https://ui-avatars.com/api/?name=Elena+Rossi&background=random",
+      "email": "elena.rossi@mailinator.com",
+      "phone": "+1 (347) 555-0334",
+      "position": "unassigned",
+      "id": 9,
+      "experiences": [
+        {
+          "company": "CreativePulse Studio",
+          "expRole": "Graphic Designer",
+          "from": "2018-02-14",
+          "to": "2024-03-01"
+        }
+      ]
     }
-]
+  ],
+  "assignedWorkers": {
+    "conference": { "staff": [], "max": 6 },
+    "servers": { "staff": [], "max": 2 },
+    "security": { "staff": [], "max": 2 },
+    "reception": { "staff": [], "max": 6 },
+    "staff": { "staff": [], "max": 2 },
+    "vault": { "staff": [], "max": 2 }
+  }
+}

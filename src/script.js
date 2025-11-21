@@ -33,9 +33,10 @@ autoAssignBtn.addEventListener("click", autoAssignWorkers);
 window.fillWorkerForm = fillWorkerForm;
 window.openWorkerModal = openWorkerModal;
 
-// window.addEventListener("beforeunload", (e) => {
-//   localStorage.setItem("data", JSON.stringify(workers));
-// });
+window.addEventListener("beforeunload", (e) => {
+  let data = {workersArray : workers , assignedWorkers : assignWorkers}
+  localStorage.setItem("data", JSON.stringify(data));
+});
 
 // function that render workers
 function renderWorkers(filtredWorkers = null) {
@@ -111,6 +112,7 @@ function submitWorkerData(e, id = null) {
   //  Validate personal inputs
   personalInputs.forEach((input) => {
     let validationResult = validateInput(input.value, input.name);
+    console.log(`input.value: ${input.value},  input.name: ${input.name}`)
     if (!validationResult.valid) {
       input.nextElementSibling.textContent = validationResult.error;
       isValidate = false;
@@ -157,7 +159,7 @@ function submitWorkerData(e, id = null) {
   if (isValidate) {
     console.log(isValidURL);
 
-    if (!isValidURL) workerObject.url = "assets/avatar.png";
+    if (!isValidURL) workerObject.url = generateImage(workerObject.name);
 
     if (id) {
       modifyoldWorker(id, workerObject, experiences);
@@ -188,6 +190,8 @@ function modifyoldWorker(id, workerObject, experiences) {
   workerObject.experiences = experiences;
   workers[index] = workerObject;
 }
+
+
 
 //function that handle the preview of the picture
 function picturePreview(e) {
@@ -492,6 +496,8 @@ function assignWorkerToRoom(workerId, roomName) {
   console.log(workerId, roomName);
 
   let worker = workers.find((w) => w.id == workerId);
+  console.log(assignWorkers);
+  
 
   if (assignWorkers[roomName].staff.length >= assignWorkers[roomName].max) {
     alert(
@@ -638,8 +644,8 @@ function autoAssignWorkers() {
 
   let workersCopy = [...workers]; 
 
-  // assign to priority zones
-  workersCopy.forEach((worker) => {
+  while(workersCopy.length > 0){
+       workersCopy.forEach((worker) => {
     
       let possibleRooms = priorityZones.filter(room => canAssign(worker.id , room))
       if(possibleRooms.length === 0 ) return;
@@ -683,9 +689,14 @@ function autoAssignWorkers() {
     if (idx !== -1) workers.splice(idx, 1);
   });
 
+  }
+  // assign to priority zones
+ 
   renderWorkers();
   allZones.forEach(r => renderRoomWorkers(r));
 }
+
+
 function canAssign(workerId, room) {
   let possibleWorkers = ArrayByRole(room);
 return possibleWorkers.some((w) => w.id === workerId);
@@ -703,16 +714,24 @@ return possibleWorkers.some((w) => w.id === workerId);
 
 async function getData() {
   if (localStorage.getItem("data")) {
-    workers = JSON.parse(localStorage.getItem("data"));
+    let data = JSON.parse(localStorage.getItem("data"));
+    workers = data.workersArray;
+    assignWorkers =  data.assignedWorkers;
     renderWorkers();
+    for(let room in assignWorkers){
+      renderRoomWorkers(room)
+    }
     return;
   }
 
   try {
     const response = await fetch(API);
     if (!response.ok) throw new Error(`Response status: ${response.status}`);
-    workers = await response.json();
-    localStorage.setItem("data", JSON.stringify(workers));
+    let data = await response.json();
+    console.log(data)
+    localStorage.setItem("data", JSON.stringify(data));
+    workers = data.workersArray;
+    assignWorkers =  data.assignedWorkers;
     renderWorkers();
   } catch (error) {
     console.error(error.message);

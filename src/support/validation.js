@@ -7,7 +7,6 @@ function validateInput(value, type) {
     case "expRole":
     case "from":
     case "to":
-    case "phone":
       if (!value) {
         return { valid: false, error: "This field is required" };
       }
@@ -19,6 +18,16 @@ function validateInput(value, type) {
       }
       if (!/^[^\s@]+@[^\s@]+\.com+$/.test(value)) {
         return { valid: false, error: "Invalid email format" };
+      }
+      return { valid: true, error: "" };
+
+    case "phone":
+      if (!value) {
+        return { valid: false, error: "This field is required" };
+      }
+      console.log(value);
+      if (!/^0[5-7](?:[ .-]?\d){8}$/.test(value)) {
+        return { valid: false, error: "Invalid phone format" };
       }
       return { valid: true, error: "" };
 
