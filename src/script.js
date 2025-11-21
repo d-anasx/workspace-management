@@ -20,6 +20,7 @@ let addWorkerButton = document.querySelector("#addWorkerBtn");
 let assignButtons = document.querySelectorAll(".room-btn");
 let searchInput = document.getElementById("search");
 let autoAssignBtn = document.getElementById("autoAssignBtn");
+let floorPlanGrid = document.querySelector('.floor-plan-grid');
 
 workerForm.addEventListener("submit", (e) => submitWorkerData(e, idToModify));
 pictureInput.addEventListener("input", picturePreview);
@@ -30,8 +31,11 @@ assignButtons.forEach((btn) => {
 });
 searchInput.addEventListener("input", handleSearchInput);
 autoAssignBtn.addEventListener("click", autoAssignWorkers);
+floorPlanGrid.addEventListener('dragover', dragoverHandler);
+floorPlanGrid.addEventListener('drop', dropHandler);
 window.fillWorkerForm = fillWorkerForm;
 window.openWorkerModal = openWorkerModal;
+window.dragstartHandler = dragstartHandler;
 
 // window.addEventListener("beforeunload", (e) => {
 //   let data = {workersArray : workers , assignedWorkers : assignWorkers}
@@ -60,7 +64,7 @@ function renderWorkers(filtredWorkers = null) {
   } else {
     filtredWorkers.forEach((worker) => {
       workersList.innerHTML += `
-            <div class="workerDiv w-fit group mt-4 p-2 rounded-2xl bg-linear-to-r from-slate-100 to-indigo-50 shadow-sm 
+            <div draggable="true" ondragstart="window.dragstartHandler(event,${worker.id})" class="workerDiv w-fit group mt-4 p-2 rounded-2xl bg-linear-to-r from-slate-100 to-indigo-50 shadow-sm 
               hover:shadow-md hover:-translate-y-1 transition-all duration-300 flex items-center">
 
     <img src="${worker.url}"
@@ -178,6 +182,7 @@ function submitWorkerData(e, id = null) {
     document.querySelector(".experiences-container").innerHTML = "";
   }
 }
+
 
 function addNewWorker(workerObject, experiences) {
   workerObject.id = idCounter++;
@@ -724,6 +729,38 @@ function canAssign(workerId, room) {
 return possibleWorkers.some((w) => w.id === workerId);
 
 }
+
+
+//-----------drag and drop functions-----------
+
+function dragstartHandler(ev,workerId) {
+  ev.dataTransfer.setData("worker-id", workerId);
+  console.log('start');
+  
+}
+
+
+function dragoverHandler(ev) {
+  ev.preventDefault();
+  let roomDiv = ev.target.closest('[data-room-name]');
+  roomDiv.style.opacity = '0.8'; 
+  
+}
+
+function dropHandler(ev) {
+  ev.preventDefault();
+  let workerId = ev.dataTransfer.getData("worker-id");
+  let roomDiv = ev.target.closest('[data-room-name]');
+  let roomName = roomDiv.dataset.roomName;
+  
+  console.log(roomName);
+  assignWorkerToRoom(workerId, roomName);
+  
+  document.querySelectorAll('[data-room-name]').forEach(room => {
+    room.style.opacity = '1';
+  });
+}
+//----------------------------------------------
 
 async function getData() {
   if (localStorage.getItem("data")) {
