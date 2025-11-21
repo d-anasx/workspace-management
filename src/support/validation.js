@@ -16,7 +16,7 @@ function validateInput(value, type) {
       if (!value) {
         return { valid: false, error: "Email is required" };
       }
-      if (!/^[^\s@]+@[^\s@]+\.com+$/.test(value)) {
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
         return { valid: false, error: "Invalid email format" };
       }
       return { valid: true, error: "" };

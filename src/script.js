@@ -12,7 +12,7 @@ let assignWorkers = {
 };
 let idCounter = 11;
 let idToModify;
-let isValidURL = true;
+let isValidURL = false;
 let workerForm = document.querySelector("#workerForm");
 let pictureInput = document.querySelector("#worker_photo");
 let addExpButton = document.querySelector("#addExp");
@@ -33,10 +33,10 @@ autoAssignBtn.addEventListener("click", autoAssignWorkers);
 window.fillWorkerForm = fillWorkerForm;
 window.openWorkerModal = openWorkerModal;
 
-window.addEventListener("beforeunload", (e) => {
-  let data = {workersArray : workers , assignedWorkers : assignWorkers}
-  localStorage.setItem("data", JSON.stringify(data));
-});
+// window.addEventListener("beforeunload", (e) => {
+//   let data = {workersArray : workers , assignedWorkers : assignWorkers}
+//   localStorage.setItem("data", JSON.stringify(data));
+// });
 
 // function that render workers
 function renderWorkers(filtredWorkers = null) {
@@ -60,13 +60,15 @@ function renderWorkers(filtredWorkers = null) {
   } else {
     filtredWorkers.forEach((worker) => {
       workersList.innerHTML += `
-            <div class="workerDiv group mt-4 p-4 rounded-2xl bg-linear-to-r from-slate-100 to-indigo-50 shadow-sm 
-              hover:shadow-md hover:-translate-y-1 transition-all duration-300 flex items-center gap-4">
+            <div class="workerDiv w-fit group mt-4 p-2 rounded-2xl bg-linear-to-r from-slate-100 to-indigo-50 shadow-sm 
+              hover:shadow-md hover:-translate-y-1 transition-all duration-300 flex items-center">
 
     <img src="${worker.url}"
-         class="w-12 h-12 rounded-full border border-indigo-200 shadow-sm object-cover" />
-
-    <div class="flex-1">
+         class="w-12 h-12 rounded-full border border-indigo-200 shadow-sm object-cover hover:cursor-pointer"
+         onclick="window.openWorkerModal(${worker.id})"
+          />
+        
+    <div class="w-[7em]">
       <h2 
         onclick="window.openWorkerModal(${worker.id})"
         class="text-sm font-semibold text-gray-800 cursor-pointer group-hover:text-indigo-600 
@@ -84,8 +86,8 @@ function renderWorkers(filtredWorkers = null) {
       class="p-2 rounded-xl flex items-center hover:bg-indigo-100 transition-all duration-200">
       
       <iconify-icon icon="solar:pen-bold-duotone" 
-                    width="22" height="22" 
-                    class="text-indigo-600"></iconify-icon>
+                     
+                    class="text-indigo-600 "></iconify-icon>
     </button>
   </div>
     `;
@@ -207,6 +209,8 @@ function picturePreview(e) {
   };
   img.onerror = () => {
     isValidURL = false;
+    console.log('error');
+    
   };
 
   img.src = url;
@@ -706,15 +710,6 @@ function canAssign(workerId, room) {
 return possibleWorkers.some((w) => w.id === workerId);
 
 }
-
-
-
-// function getRoomByRole(role){
-//   switch(role){
-//     case 'Receptionist':
-//       return ['reception']
-//   }
-// }
 
 async function getData() {
   if (localStorage.getItem("data")) {
