@@ -34,7 +34,7 @@ autoAssignBtn.addEventListener("click", autoAssignWorkers);
 floorPlanGrid.addEventListener('dragover', dragoverHandler);
 floorPlanGrid.addEventListener('drop', dropHandler);
 window.fillWorkerForm = fillWorkerForm;
-window.openWorkerModal = openWorkerModal;
+window.openWorkerModalDetails = openWorkerModalDetails;
 window.dragstartHandler = dragstartHandler;
 
 // window.addEventListener("beforeunload", (e) => {
@@ -69,12 +69,12 @@ function renderWorkers(filtredWorkers = null) {
 
     <img src="${worker.url}"
          class="w-12 h-12 rounded-full border border-indigo-200 shadow-sm object-cover hover:cursor-pointer"
-         onclick="window.openWorkerModal(${worker.id})"
+         onclick="window.openWorkerModalDetails(${worker.id})"
           />
         
     <div class="w-[7em]">
       <h2 
-        onclick="window.openWorkerModal(${worker.id})"
+        onclick="window.openWorkerModalDetails(${worker.id})"
         class="text-sm font-semibold text-gray-800 cursor-pointer group-hover:text-indigo-600 
                transition-all duration-200">
         ${worker.name}
@@ -183,7 +183,7 @@ function submitWorkerData(e, id = null) {
   }
 }
 
-
+//adding the new worker to array
 function addNewWorker(workerObject, experiences) {
   workerObject.id = idCounter++;
   workerObject.position = "unassigned";
@@ -191,6 +191,7 @@ function addNewWorker(workerObject, experiences) {
   workers.push(workerObject);
 }
 
+//changing old worker infos by new onces
 function modifyoldWorker(id, workerObject, experiences) {
   let index = workers.findIndex((w) => w.id === id);
   workerObject.id = id;
@@ -198,6 +199,7 @@ function modifyoldWorker(id, workerObject, experiences) {
   workers[index] = workerObject;
 }
 
+// image generator function
 function generateImage(name){
   console.log(name)
   let splittedName = name.split(' ')
@@ -221,6 +223,7 @@ function picturePreview(e) {
   img.src = url;
 }
 
+//adding exp form
 function addExperience(exp = null) {
   let exp_container = document.querySelector(".experiences-container");
   let div = document.createElement("div");
@@ -259,6 +262,7 @@ function addExperience(exp = null) {
   handleTransition(div, div.classList);
 }
 
+//filling worker modal while modifying
 function fillWorkerForm(workerId) {
   idToModify = parseInt(workerId);
   let worker = workers.find((w) => w.id === idToModify);
@@ -280,7 +284,8 @@ function fillWorkerForm(workerId) {
   });
 }
 
-function openWorkerModal(workerId, roomName = null) {
+//open worker modal infos
+function openWorkerModalDetails(workerId, roomName = null) {
   console.log(roomName);
   let worker = roomName
     ? assignWorkers[roomName].staff.find((worker) => worker.id == workerId)
@@ -371,11 +376,13 @@ function openWorkerModal(workerId, roomName = null) {
   document.getElementById("openWorkerInfo").click();
 }
 
+//function to format date
 function formatDate(dateString) {
   let date = new Date(dateString);
   return date.toLocaleDateString();
 }
 
+//creating smooth transition
 function handleTransition(div, classes = "") {
   div.className =
     classes +
@@ -396,11 +403,13 @@ function handleTransition(div, classes = "") {
   }, 10);
 }
 
+//cleaning worker modal
 function cleanModal() {
   workerForm.reset();
   document.getElementById("picture").src = "";
 }
 
+//handling the + icon in each room
 function handleAssign() {
   document.getElementById("openAssignModal").click();
   let roomName = this.dataset.roomName;
@@ -422,11 +431,12 @@ function handleAssign() {
     card.addEventListener("click", function () {
       const workerId =
         this.querySelector(".assign-worker-btn").dataset.workerId;
-      openWorkerModal(workerId);
+      openWorkerModalDetails(workerId);
     });
   });
 }
 
+//ui for workers to assign diplayed
 function diplayUnassigned(workersToAssignArray) {
   let workersToAssignContainer = document.getElementById("list-to-assign");
 
@@ -505,6 +515,7 @@ function diplayUnassigned(workersToAssignArray) {
   `;
 }
 
+//function that change worker from the array to assignedWorkers
 function assignWorkerToRoom(workerId, roomName) {
   console.log(workerId, roomName);
 
@@ -531,6 +542,8 @@ function assignWorkerToRoom(workerId, roomName) {
   document.getElementById("closeAssignModal").click();
 }
 
+
+// function that render ui of assigned workers 
 function renderRoomWorkers(roomName) {
   let roomContainer = document.querySelector(`.${roomName.toLowerCase()}`);
 
@@ -545,7 +558,7 @@ function renderRoomWorkers(roomName) {
 
     workerBadge.innerHTML = `
       
-      <iconify-icon onclick="openWorkerModal(${worker.id},'${roomName}')" class="absolute -right-4 -top-2 p-0.5 rounded-full flex items-center justify-center hover:bg-blue-400/60 duration-300" icon="material-symbols:info-outline-rounded" width="24" height="24"  style="color: #0b5d93"></iconify-icon>
+      <iconify-icon onclick="openWorkerModalDetails(${worker.id},'${roomName}')" class="absolute -right-4 -top-2 p-0.5 rounded-full flex items-center justify-center hover:bg-blue-400/60 duration-300" icon="material-symbols:info-outline-rounded" width="24" height="24"  style="color: #0b5d93"></iconify-icon>
       
       <img 
         src="${worker.url}" 
@@ -574,6 +587,7 @@ function renderRoomWorkers(roomName) {
   updateUiAfterAssign(roomName, roomContainer)
 }
 
+//function that update room ui (room button, overlay..) after assign
 function updateUiAfterAssign(roomName, roomContainer){
   let roomBtn = roomContainer.querySelector(".room-btn");
   if (assignWorkers[roomName].staff.length > 0) {
@@ -603,6 +617,7 @@ function updateUiAfterAssign(roomName, roomContainer){
   }
 }
 
+// returns array of possible workers that can enter a room
 function ArrayByRole(room) {
   switch (room) {
     case "reception":
@@ -633,6 +648,7 @@ function ArrayByRole(room) {
   }
 }
 
+// returns worker from his work room to unassigned
 function unassignWorkerFromRoom(workerId, roomName) {
   console.log(workerId, roomName);
 
@@ -654,6 +670,7 @@ function unassignWorkerFromRoom(workerId, roomName) {
   }
 }
 
+//function that handle search input for filtring the workers by role and name
 function handleSearchInput(e) {
   let searchTerm = e.target.value.toLowerCase();
   let filtred = workers.filter(
@@ -665,6 +682,7 @@ function handleSearchInput(e) {
   renderWorkers(filtred);
 }
 
+//auto assigning workers by zones priority
 function autoAssignWorkers() {
   let priorityZones = ["reception", "security", "servers"];
   let allZones = ["conference", "servers", "security", "reception", "staff", "vault"];
@@ -723,7 +741,7 @@ function autoAssignWorkers() {
   allZones.forEach(r => renderRoomWorkers(r));
 }
 
-
+//function returns true or false if can a worker enter a specific room
 function canAssign(workerId, room) {
   let possibleWorkers = ArrayByRole(room);
 return possibleWorkers.some((w) => w.id === workerId);
@@ -762,6 +780,7 @@ function dropHandler(ev) {
 }
 //----------------------------------------------
 
+// getting data from localstorage if exists or fetching it
 async function getData() {
   if (localStorage.getItem("data")) {
     let data = JSON.parse(localStorage.getItem("data"));
