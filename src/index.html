@@ -256,7 +256,7 @@
         id="openWorkerInfo"
         command="show-modal"
         commandfor="workerInfosModal"
-      ></button>
+      ><span class="sr-only">Button show Modal</span></button>
 
       <!-- Assign modal Dialog -->
       <el-dialog>
@@ -311,17 +311,17 @@
         id="openAssignModal"
         command="show-modal"
         commandfor="AssignworkerModal"
-      ></button>
+      ><span class="sr-only">Button Assign Modal</span></button>
 
       <main class="flex-1 p-4 md:place-self-center">
-        <div class="relative w-full  bg-white rounded-xl shadow-xl">
+        <div class="relative w-full  bg-white rounded-xl shadow-xl ">
           <div class="floor-plan-grid w-full h-full gap-2 p-2 rounded-md">
             <!-- CONFERENCE -->
             <div
               class="conference relative grid place-items-center rounded-lg overflow-hidden"
               data-room-name="conference"
               style="
-                background-image: url('assets/meetingRoom (1).png');
+                background-image: url('assets/meetingRoom (1).webp');
                 background-size: 100% 100%;
                 background-repeat: no-repeat;
               "
@@ -332,9 +332,11 @@
               </div>
               <div class="place-self-center z-10 flex room-workers"></div>
               <button
+              name="conference"
                 data-room-name="conference"
                 class="room-btn border-2 z-20 place-self-center bg-blue-600 text-white w-11 h-11 rounded-full flex items-center justify-center shadow-lg hover:bg-blue-700 duration-200"
               >
+              <span class="sr-only">Button Room</span>
                 <iconify-icon
                   icon="zondicons:add-solid"
                   width="20"
@@ -348,7 +350,7 @@
               class="servers relative grid place-items-center rounded-lg overflow-hidden"
               data-room-name="servers"
               style="
-                background-image: url('assets/serverRoom (1).png');
+                background-image: url('assets/serverRoom (1).webp');
                 background-size: 100% 100%;
                 background-repeat: no-repeat;
               "
@@ -361,9 +363,11 @@
               </div>
               <div class="place-self-center z-10 flex room-workers"></div>
               <button
+              name="servers"
                 data-room-name="servers"
                 class="room-btn border-2 z-20 place-self-center bg-blue-600 text-white w-11 h-11 rounded-full flex items-center justify-center shadow-lg hover:bg-blue-700 duration-200"
               >
+              <span class="sr-only">Button Room</span>
                 <iconify-icon
                   icon="zondicons:add-solid"
                   width="20"
@@ -377,7 +381,7 @@
               class="security relative grid place-items-center rounded-lg overflow-hidden"
               data-room-name="security"
               style="
-                background-image: url('assets/securityRoom (1).png');
+                background-image: url('assets/securityRoom (1).webp');
                 background-size: 100% 100%;
                 background-repeat: no-repeat;
               "
@@ -390,9 +394,11 @@
               </div>
               <div class="place-self-center z-10 flex room-workers"></div>
               <button
+              name="security"
                 data-room-name="security"
                 class="room-btn border-2 z-20 place-self-center bg-blue-600 text-white w-11 h-11 rounded-full flex items-center justify-center shadow-lg hover:bg-blue-700 duration-200"
               >
+              <span class="sr-only">Button Room</span>
                 <iconify-icon
                   icon="zondicons:add-solid"
                   width="20"
@@ -406,7 +412,7 @@
               class="reception relative grid place-items-center rounded-lg overflow-hidden"
               data-room-name="reception"
               style="
-                background-image: url('assets/Reception (1).png');
+                background-image: url('assets/Reception (1).webp');
                 background-size: 100% 100%;
                 background-repeat: no-repeat;
               "
@@ -419,9 +425,11 @@
               </div>
               <div class="place-self-center z-10 flex room-workers"></div>
               <button
+              name="reception"
                 data-room-name="reception"
                 class="room-btn border-2 z-20 place-self-center bg-blue-600 text-white w-11 h-11 rounded-full flex items-center justify-center shadow-lg hover:bg-blue-700 duration-200"
               >
+              <span class="sr-only">Button Room</span>
                 <iconify-icon
                   icon="zondicons:add-solid"
                   width="20"
@@ -435,7 +443,7 @@
               class="staff relative grid place-items-center rounded-lg overflow-hidden"
               data-room-name="staff"
               style="
-                background-image: url('assets/employeeRoom (1).png');
+                background-image: url('assets/employeeRoom (1).webp');
                 background-size: 100% 100%;
                 background-repeat: no-repeat;
               "
@@ -446,9 +454,11 @@
               </div>
               <div class="place-self-center z-10 flex room-workers"></div>
               <button
+              name="staff"
                 data-room-name="staff"
                 class="room-btn border-2 z-20 place-self-center bg-blue-600 text-white w-11 h-11 rounded-full flex items-center justify-center shadow-lg hover:bg-blue-700 duration-200"
               >
+              <span class="sr-only">Button Room</span>
                 <iconify-icon
                   icon="zondicons:add-solid"
                   width="20"
@@ -462,7 +472,7 @@
               class="vault relative grid place-items-center rounded-lg overflow-hidden"
               data-room-name="vault"
               style="
-                background-image: url('assets/archiveRoom (1).png');
+                background-image: url('assets/archiveRoom (1).webp');
                 background-size: 100% 100%;
                 background-repeat: no-repeat;
               "
@@ -473,9 +483,11 @@
               </div>
               <div class="place-self-center flex room-workers"></div>
               <button
+                name="vault"
                 data-room-name="vault"
                 class="room-btn border-2 z-20 place-self-center bg-blue-600 text-white w-11 h-11 rounded-full flex items-center justify-center shadow-lg hover:bg-blue-700 duration-200"
               >
+              <span class="sr-only">Button Room</span>
                 <iconify-icon
                   icon="zondicons:add-solid"
                   width="20"

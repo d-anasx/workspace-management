@@ -67,9 +67,11 @@ function renderWorkers(filtredWorkers = null) {
             <div draggable="true" ondragstart="window.dragstartHandler(event,${worker.id})" class="workerDiv w-fit group mt-4 p-2 rounded-2xl bg-linear-to-r from-slate-100 to-indigo-50 shadow-sm 
               hover:shadow-md hover:-translate-y-1 transition-all duration-300 flex items-center">
 
-    <img src="${worker.url}"
+    <img src="${worker.url}" 
+          alt="${worker.name}"
          class="w-12 h-12 rounded-full border border-indigo-200 shadow-sm object-cover hover:cursor-pointer"
          onclick="window.openWorkerModalDetails(${worker.id})"
+         width="48" height="48"
           />
         
     <div class="w-[7em]">
@@ -201,9 +203,24 @@ function modifyoldWorker(id, workerObject, experiences) {
 
 // image generator function
 function generateImage(name){
-  console.log(name)
-  let splittedName = name.split(' ')
-  return `https://ui-avatars.com/api/?name=${splittedName[0]}+${splittedName[1]}&background=random`
+  const initials = name
+    .split(" ")
+    .map(word => word[0])
+    .join("")
+    .toUpperCase();
+
+  const color = Math.floor(Math.random() * 16777215).toString(16).padStart(6, "0");
+
+  let svg =  `
+  <svg xmlns="http://www.w3.org/2000/svg" width="120" height="120">
+    <rect width="120" height="120" fill="#${color}" />
+    <text x="50%" y="50%" font-size="48" font-family="Arial, sans-serif"
+      fill="white" text-anchor="middle" dominant-baseline="middle">
+      ${initials}
+    </text>
+  </svg>`;
+  console.log(btoa(svg))
+  return "data:image/svg+xml;base64," + btoa(svg);
 }
 
 //function that handle the preview of the picture
@@ -564,6 +581,7 @@ function renderRoomWorkers(roomName) {
         src="${worker.url}" 
         alt="${worker.name}"
         class="w-10 h-10 rounded-full object-cover"
+        width="48" height="48"
       />
       <button data-id = "${worker.id}"  class="unassignBtn absolute opacity-0 top-0 left-0 w-full h-full flex items-center justify-center hover:bg-red-600/60 hover:opacity-100 duration-300  text-white rounded-full " 
       >

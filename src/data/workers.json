@@ -3,7 +3,7 @@
     {
       "name": "Tanya Warren",
       "role": "Receptionist",
-      "url": "https://ui-avatars.com/api/?name=anya+Warren&background=random",
+      "url": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjAiIGhlaWdodD0iMTIwIj4KICAgIDxyZWN0IHdpZHRoPSIxMjAiIGhlaWdodD0iMTIwIiBmaWxsPSIjNUUyN0Y1IiAvPgogICAgPHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtc2l6ZT0iNDgiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIKICAgICAgZmlsbD0id2hpdGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGRvbWluYW50LWJhc2VsaW5lPSJtaWRkbGUiPgogICAgICBUVwogICAgPC90ZXh0PgogIDwvc3ZnPg==",
       "email": "tanya.warren@mailinator.com",
       "phone": "+1 (697) 772-1064",
       "position": "unassigned",
@@ -26,7 +26,7 @@
     {
       "name": "Hassan Idrissi",
       "role": "IT Guy",
-      "url": "https://ui-avatars.com/api/?name=Hassan+Idrissi&background=random",
+      "url": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjAiIGhlaWdodD0iMTIwIj4KICAgIDxyZWN0IHdpZHRoPSIxMjAiIGhlaWdodD0iMTIwIiBmaWxsPSIjRjUyNzlGIiAvPgogICAgPHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtc2l6ZT0iNDgiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIKICAgICAgZmlsbD0id2hpdGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGRvbWluYW50LWJhc2VsaW5lPSJtaWRkbGUiPgogICAgICBISQogICAgPC90ZXh0PgogIDwvc3ZnPg==",
       "email": "hassan.idrissi@mailinator.com",
       "phone": "+1 (442) 500-1129",
       "position": "unassigned",
@@ -43,7 +43,7 @@
     {
       "name": "Alicia Gomez",
       "role": "Cleaning",
-      "url": "https://ui-avatars.com/api/?name=Alicia+Gomez&background=random",
+      "url": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjAiIGhlaWdodD0iMTIwIj4KICAgIDxyZWN0IHdpZHRoPSIxMjAiIGhlaWdodD0iMTIwIiBmaWxsPSIjNzE2RjUxIiAvPgogICAgPHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtc2l6ZT0iNDgiIGZvbnQtZmFtaWx5PSJBcmlhbCwgU2Fucy1TZXJpZiIKICAgICAgZmlsbD0id2hpdGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGRvbWluYW50LWJhc2VsaW5lPSJtaWRkbGUiPgogICAgICBBRwogICAgPC90ZXh0PgogIDwvc3ZnPg==",
       "email": "alicia.gomez@mailinator.com",
       "phone": "+1 (613) 285-7721",
       "position": "unassigned",
@@ -53,7 +53,7 @@
     {
       "name": "Daniel Price",
       "role": "Security",
-      "url": "https://ui-avatars.com/api/?name=Daniel+Price&background=random",
+      "url": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjAiIGhlaWdodD0iMTIwIj4KICAgIDxyZWN0IHdpZHRoPSIxMjAiIGhlaWdodD0iMTIwIiBmaWxsPSIjN0NGNURDIiAvPgogICAgPHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtc2l6ZT0iNDgiIGZvbnQtZmFtaWx5PSJBcmlhbCwgU2Fucy1TZXJpZiIKICAgICAgZmlsbD0id2hpdGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGRvbWluYW50LWJhc2VsaW5lPSJtaWRkbGUiPgogICAgICBEUAogICAgPC90ZXh0PgogIDwvc3ZnPg==",
       "email": "daniel.price@mailinator.com",
       "phone": "+1 (531) 893-2047",
       "position": "unassigned",
@@ -82,7 +82,7 @@
     {
       "name": "Monica Reyes",
       "role": "Manager",
-      "url": "https://ui-avatars.com/api/?name=Monica+Reyes&background=random",
+      "url": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjAiIGhlaWdodD0iMTIwIj4KICAgIDxyZWN0IHdpZHRoPSIxMjAiIGhlaWdodD0iMTIwIiBmaWxsPSIjQzQ3QzZBIiAvPgogICAgPHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtc2l6ZT0iNDgiIGZvbnQtZmFtaWx5PSJBcmlhbCwgU2Fucy1TZXJpZiIKICAgICAgZmlsbD0id2hpdGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGRvbWluYW50LWJhc2VsaW5lPSJtaWRkbGUiPgogICAgICBNUgogICAgPC90ZXh0PgogIDwvc3ZnPg==",
       "email": "monica.reyes@mailinator.com",
       "phone": "+1 (704) 555-0198",
       "position": "unassigned",
@@ -105,7 +105,7 @@
     {
       "name": "Kevin Zhang",
       "role": "IT Guy",
-      "url": "https://ui-avatars.com/api/?name=Kevin+Zhang&background=random",
+      "url": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjAiIGhlaWdodD0iMTIwIj4KICAgIDxyZWN0IHdpZHRoPSIxMjAiIGhlaWdodD0iMTIwIiBmaWxsPSIjODU0QjU1IiAvPgogICAgPHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtc2l6ZT0iNDgiIGZvbnQtZmFtaWx5PSJBcmlhbCwgU2Fucy1TZXJpZiIKICAgICAgZmlsbD0id2hpdGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGRvbWluYW50LWJhc2VsaW5lPSJtaWRkbGUiPgogICAgICBLWgogICAgPC90ZXh0PgogIDwvc3ZnPg==",
       "email": "kevin.zhang@mailinator.com",
       "phone": "+1 (415) 555-0123",
       "position": "unassigned",
@@ -128,7 +128,7 @@
     {
       "name": "Priya Patel",
       "role": "Cleaning",
-      "url": "https://ui-avatars.com/api/?name=Priya+Patel&background=random",
+      "url": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjAiIGhlaWdodD0iMTIwIj4KICAgIDxyZWN0IHdpZHRoPSIxMjAiIGhlaWdodD0iMTIwIiBmaWxsPSIjRUE5QzUzIiAvPgogICAgPHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtc2l6ZT0iNDgiIGZvbnQtZmFtaWx5PSJBcmlhbCwgU2Fucy1TZXJpZiIKICAgICAgZmlsbD0id2hpdGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGRvbWluYW50LWJhc2VsaW5lPSJtaWRkbGUiPgogICAgICBQUAogICAgPC90ZXh0PgogIDwvc3ZnPg==",
       "email": "priya.patel@mailinator.com",
       "phone": "+1 (303) 555-0467",
       "position": "unassigned",
@@ -145,7 +145,7 @@
     {
       "name": "Samuel Okoye",
       "role": "Receptionist",
-      "url": "https://ui-avatars.com/api/?name=Samuel+Okoye&background=random",
+      "url": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjAiIGhlaWdodD0iMTIwIj4KICAgIDxyZWN0IHdpZHRoPSIxMjAiIGhlaWdodD0iMTIwIiBmaWxsPSIjQjQ3MkI5IiAvPgogICAgPHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtc2l6ZT0iNDgiIGZvbnQtZmFtaWx5PSJBcmlhbCwgU2Fucy1TZXJpZiIKICAgICAgZmlsbD0id2hpdGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGRvbWluYW50LWJhc2VsaW5lPSJtaWRkbGUiPgogICAgICBTTwogICAgPC90ZXh0PgogIDwvc3ZnPg==",
       "email": "samuel.okoye@mailinator.com",
       "phone": "+1 (212) 555-0789",
       "position": "unassigned",
@@ -155,7 +155,7 @@
     {
       "name": "Elena Rossi",
       "role": "Security",
-      "url": "https://ui-avatars.com/api/?name=Elena+Rossi&background=random",
+      "url": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjAiIGhlaWdodD0iMTIwIj4KICAgIDxyZWN0IHdpZHRoPSIxMjAiIGhlaWdodD0iMTIwIiBmaWxsPSIjRjcyQjM2IiAvPgogICAgPHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtc2l6ZT0iNDgiIGZvbnQtZmFtaWx5PSJBcmlhbCwgU2Fucy1TZXJpZiIKICAgICAgZmlsbD0id2hpdGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGRvbWluYW50LWJhc2VsaW5lPSJtaWRkbGUiPgogICAgICBFUgogICAgPC90ZXh0PgogIDwvc3ZnPg==",
       "email": "elena.rossi@mailinator.com",
       "phone": "+1 (347) 555-0334",
       "position": "unassigned",
