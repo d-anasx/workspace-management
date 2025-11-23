@@ -55,3 +55,45 @@
 - Sauvegarde via localStorage.
 - Mode de réorganisation automatique.
 - Photo par défaut si absente.
+
+
+# 📁 Structure du Projet
+```
+workspace-management/              
+├── src/
+|   ├── assets/
+|   ├── data/
+│       └── workers.json
+│   ├── input.css          
+│   ├── output.css
+|   ├── index.html         
+│   ├── script.js          
+│   └── support/
+│       └── validation.js                 
+├── package.json          
+└── README.md              
+```
+
+
+
+# 🚀 Installation
+## 1. Cloner le projet
+```bash
+git clone https://github.com/d-anasx/workspace-management
+cd workspace-management
+```
+
+## 2. Installer les dépendances
+```bash
+npm install
+```
+
+Cette commande installera toutes les dépendances nécessaires, notamment Tailwind CSS.
+
+##   3. Compiler Tailwind CSS
+
+Pour compiler le fichier CSS avec Tailwind, exécutez la commande suivante :
+```bash
+npx @tailwindcss/cli -i ./src/input.css -o ./src/output.css --watch
+```
+
