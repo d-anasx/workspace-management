@@ -128,9 +128,11 @@
                         class="w-32 h-32 rounded-full border-2 border-gray-300 flex items-center justify-center bg-gray-50"
                       >
                         <img
+                          width="32"
+                          height="32"
                           id="picture"
                           class="object-cover rounded-full"
-                          src="http://abcd.no"
+                          src="https://abcd.no"
                           alt="photo preview"
                         />
                       </div>
@@ -313,8 +315,8 @@
         commandfor="AssignworkerModal"
       ><span class="sr-only">Button Assign Modal</span></button>
 
-      <main class="flex-1 p-4 md:place-self-center">
-        <div class="relative w-full  bg-white rounded-xl shadow-xl ">
+      <main class="w-full">
+        <div class="relative w-full bg-white rounded-md">
           <div class="floor-plan-grid w-full h-full gap-2 p-2 rounded-md">
             <!-- CONFERENCE -->
             <div
@@ -330,7 +332,7 @@
               <div class="self-end p-3 font-bold justify-self-start z-5">
                 Conference
               </div>
-              <div class="place-self-center z-10 flex room-workers"></div>
+              <div class="place-self-center w-fit z-10 flex room-workers"></div>
               <button
               name="conference"
                 data-room-name="conference"
@@ -356,12 +358,12 @@
               "
             >
               <div
-                class="overlay bg-red-600/50 absolute inset-0 rounded-lg"
+                class="overlay w-full bg-red-600/50 absolute inset-0 rounded-lg"
               ></div>
               <div class="self-end p-3 font-bold justify-self-start z-5">
                 Servers
               </div>
-              <div class="place-self-center z-10 flex room-workers"></div>
+              <div class="place-self-center z-10 w-fit flex room-workers"></div>
               <button
               name="servers"
                 data-room-name="servers"
@@ -389,7 +391,7 @@
               <div
                 class="overlay absolute inset-0 bg-red-600/50 rounded-lg"
               ></div>
-              <div class="self-end p-3 font-bold justify-self-start z-5">
+              <div class="self-end p-3 w-fit font-bold justify-self-start z-5">
                 Security
               </div>
               <div class="place-self-center z-10 flex room-workers"></div>
@@ -423,7 +425,7 @@
               <div class="self-end p-3 font-bold justify-self-start z-5">
                 Reception
               </div>
-              <div class="place-self-center z-10 flex room-workers"></div>
+              <div class="place-self-center w-fit z-10 flex room-workers"></div>
               <button
               name="reception"
                 data-room-name="reception"
@@ -452,7 +454,7 @@
               <div class="self-end p-3 font-bold justify-self-start z-5">
                 Staff room
               </div>
-              <div class="place-self-center z-10 flex room-workers"></div>
+              <div class="place-self-center w-fit z-10 flex room-workers"></div>
               <button
               name="staff"
                 data-room-name="staff"
@@ -477,11 +479,11 @@
                 background-repeat: no-repeat;
               "
             >
-              <div class="overlay absolute inset-0 rounded-lg"></div>
+              <div class="overlay absolute  inset-0 rounded-lg"></div>
               <div class="self-end p-3 font-bold justify-self-start z-5">
                 Vault
               </div>
-              <div class="place-self-center flex room-workers"></div>
+              <div class="place-self-center w-fit flex room-workers"></div>
               <button
                 name="vault"
                 data-room-name="vault"
