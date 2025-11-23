@@ -3,7 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Office Layout UI</title>
+     <title>OfficeFlow - Gestionnaire d'Affectation du Personnel</title>
+    <meta name="description" content="Solution interactive pour optimiser la répartition des équipes avec affectation intelligente et visualisation en temps réel." />
+    <meta name="keywords" content="gestion personnel, affectation employés, office management, drag and drop, gestion RH" />
+    <meta name="author" content="ANAS" />
     <link rel="stylesheet" href="output.css" />
   </head>
   <body class="bg-gray-100">
@@ -26,6 +29,7 @@
             id="addWorkerBtn"
             command="show-modal"
             commandfor="workerModal"
+            aria-label="Ajouter un nouvel employé"
             class="border-2 p-4 bg-blue-600 text-white w-11 h-11 rounded-full flex items-center justify-center shadow-lg hover:bg-blue-700 duration-200"
           >
             <iconify-icon
@@ -36,6 +40,7 @@
           </button>
           <button
             id="autoAssignBtn"
+            aria-label="Affectation automatique des employés"
             class="border-2 p-4 bg-blue-600 text-white w-11 h-11 rounded-full flex items-center justify-center shadow-lg hover:bg-blue-700 duration-200"
           >
             <iconify-icon
@@ -328,14 +333,15 @@
                 background-repeat: no-repeat;
               "
             >
-              <div class="overlay absolute inset-0 rounded-lg"></div>
+              <div class="overlay w-full absolute inset-0 rounded-lg"></div>
               <div class="self-end p-3 font-bold justify-self-start z-5">
                 Conference
               </div>
-              <div class="place-self-center w-fit z-10 flex room-workers"></div>
+              <div class="place-self-center w-[80%] z-10 justify-center flex room-workers"></div>
               <button
-              name="conference"
+                name="conference"
                 data-room-name="conference"
+                aria-label="Affecter un employé à la salle de conférence"
                 class="room-btn border-2 z-20 place-self-center bg-blue-600 text-white w-11 h-11 rounded-full flex items-center justify-center shadow-lg hover:bg-blue-700 duration-200"
               >
               <span class="sr-only">Button Room</span>
@@ -363,9 +369,10 @@
               <div class="self-end p-3 font-bold justify-self-start z-5">
                 Servers
               </div>
-              <div class="place-self-center z-10 w-fit flex room-workers"></div>
+              <div class="place-self-center z-10 w-[80%] justify-center flex room-workers"></div>
               <button
-              name="servers"
+                aria-label="Affecter un employé à la salle des serveurs"
+                name="servers"
                 data-room-name="servers"
                 class="room-btn border-2 z-20 place-self-center bg-blue-600 text-white w-11 h-11 rounded-full flex items-center justify-center shadow-lg hover:bg-blue-700 duration-200"
               >
@@ -389,14 +396,15 @@
               "
             >
               <div
-                class="overlay absolute inset-0 bg-red-600/50 rounded-lg"
+                class="overlay w-full absolute inset-0 bg-red-600/50 rounded-lg"
               ></div>
               <div class="self-end p-3 w-fit font-bold justify-self-start z-5">
                 Security
               </div>
-              <div class="place-self-center z-10 flex room-workers"></div>
+              <div class="place-self-center z-10 w-[80%] justify-center flex room-workers"></div>
               <button
-              name="security"
+                name="security"
+                aria-label="Affecter un employé à la salle de sécurité"
                 data-room-name="security"
                 class="room-btn border-2 z-20 place-self-center bg-blue-600 text-white w-11 h-11 rounded-full flex items-center justify-center shadow-lg hover:bg-blue-700 duration-200"
               >
@@ -420,14 +428,15 @@
               "
             >
               <div
-                class="overlay absolute bg-red-600/50 inset-0 rounded-lg"
+                class="overlay w-full absolute bg-red-600/50 inset-0 rounded-lg"
               ></div>
               <div class="self-end p-3 font-bold justify-self-start z-5">
                 Reception
               </div>
-              <div class="place-self-center w-fit z-10 flex room-workers"></div>
+              <div class="place-self-center  z-10 flex justify-center w-[80%] room-workers"></div>
               <button
-              name="reception"
+                name="reception"
+                aria-label="Affecter un employé à la réception"
                 data-room-name="reception"
                 class="room-btn border-2 z-20 place-self-center bg-blue-600 text-white w-11 h-11 rounded-full flex items-center justify-center shadow-lg hover:bg-blue-700 duration-200"
               >
@@ -450,13 +459,14 @@
                 background-repeat: no-repeat;
               "
             >
-              <div class="overlay absolute inset-0 rounded-lg"></div>
+              <div class="overlay w-full absolute inset-0 rounded-lg"></div>
               <div class="self-end p-3 font-bold justify-self-start z-5">
                 Staff room
               </div>
-              <div class="place-self-center w-fit z-10 flex room-workers"></div>
+              <div class="place-self-center w-[80%] justify-center z-10 flex room-workers"></div>
               <button
-              name="staff"
+                name="staff"
+                aria-label="Affecter un employé à la salle du personnel"
                 data-room-name="staff"
                 class="room-btn border-2 z-20 place-self-center bg-blue-600 text-white w-11 h-11 rounded-full flex items-center justify-center shadow-lg hover:bg-blue-700 duration-200"
               >
@@ -479,12 +489,13 @@
                 background-repeat: no-repeat;
               "
             >
-              <div class="overlay absolute  inset-0 rounded-lg"></div>
+              <div class="overlay w-full absolute  inset-0 rounded-lg"></div>
               <div class="self-end p-3 font-bold justify-self-start z-5">
                 Vault
               </div>
-              <div class="place-self-center w-fit flex room-workers"></div>
+              <div class="place-self-center w-[80%] flex justify-center room-workers"></div>
               <button
+                aria-label="Affecter un employé au coffre-fort"
                 name="vault"
                 data-room-name="vault"
                 class="room-btn border-2 z-20 place-self-center bg-blue-600 text-white w-11 h-11 rounded-full flex items-center justify-center shadow-lg hover:bg-blue-700 duration-200"

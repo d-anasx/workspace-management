@@ -88,6 +88,7 @@ function renderWorkers(filtredWorkers = null) {
     <button 
       command="show-modal"
       commandfor="workerModal"
+      aria-label="Modifier les informations de ${worker.name}"
       onclick="window.fillWorkerForm(${worker.id});"
       class="p-2 rounded-xl flex items-center hover:bg-indigo-100 transition-all duration-200">
       
@@ -575,7 +576,8 @@ function renderRoomWorkers(roomName) {
 
     workerBadge.innerHTML = `
       
-      <iconify-icon onclick="openWorkerModalDetails(${worker.id},'${roomName}')" class="absolute -right-4 -top-2 p-0.5 rounded-full flex items-center justify-center hover:bg-blue-400/60 duration-300" icon="material-symbols:info-outline-rounded" width="24" height="24"  style="color: #0b5d93"></iconify-icon>
+      <iconify-icon onclick="openWorkerModalDetails(${worker.id},'${roomName}')" 
+      class="absolute -right-4 -top-2 p-0.5 rounded-full flex items-center justify-center hover:bg-blue-400/60 duration-300" icon="material-symbols:info-outline-rounded" width="24" height="24"  style="color: #0b5d93"></iconify-icon>
       
       <img 
         src="${worker.url}" 
@@ -583,7 +585,8 @@ function renderRoomWorkers(roomName) {
         class="w-10 h-10 rounded-full object-cover"
         width="48" height="48"
       />
-      <button data-id = "${worker.id}"  class="unassignBtn absolute opacity-0 top-0 left-0 w-full h-full flex items-center justify-center hover:bg-red-600/60 hover:opacity-100 duration-300  text-white rounded-full " 
+      <button data-id = "${worker.id}" aria-label="Retirer ${worker.name} de ${roomName}"
+        class="unassignBtn absolute opacity-0 top-0 left-0 w-full h-full flex items-center justify-center hover:bg-red-600/60 hover:opacity-100 duration-300  text-white rounded-full " 
       >
       <iconify-icon icon="lets-icons:back" width="24" height="24"  style="color: #130202"></iconify-icon>
       </button>
@@ -612,7 +615,7 @@ function updateUiAfterAssign(roomName, roomContainer){
     roomContainer.querySelector(".overlay").hidden = true;
     roomBtn.innerHTML = `
       <iconify-icon icon="mdi:account-check" width="20" height="20"></iconify-icon>
-      <span class="text-xs font-bold">${assignWorkers[roomName].staff.length}/${assignWorkers[roomName].max}</span>
+      <span class="text-xs font-extrabold drop-shadow-sm">${assignWorkers[roomName].staff.length}/${assignWorkers[roomName].max}</span>
     `;
     roomBtn.className = roomBtn.className
       .replace("bg-blue-600", "bg-green-600")
