@@ -37,10 +37,10 @@ window.fillWorkerForm = fillWorkerForm;
 window.openWorkerModalDetails = openWorkerModalDetails;
 window.dragstartHandler = dragstartHandler;
 
-// window.addEventListener("beforeunload", (e) => {
-//   let data = {workersArray : workers , assignedWorkers : assignWorkers}
-//   localStorage.setItem("data", JSON.stringify(data));
-// });
+window.addEventListener("beforeunload", (e) => {
+  let data = {workersArray : workers , assignedWorkers : assignWorkers}
+  localStorage.setItem("data", JSON.stringify(data));
+});
 
 // function that render workers
 function renderWorkers(filtredWorkers = null) {
@@ -668,7 +668,6 @@ function ArrayByRole(room) {
 
 // returns worker from his work room to unassigned
 function unassignWorkerFromRoom(workerId, roomName) {
-  console.log(workerId, roomName);
 
   const workerIndex = assignWorkers[roomName].staff.findIndex(
     (w) => w.id == workerId
@@ -705,7 +704,7 @@ function autoAssignWorkers() {
   let priorityZones = ["reception", "security", "servers"];
   let allZones = ["conference", "servers", "security", "reception", "staff", "vault"];
 
-  // let workersCopy = [...workers]; 
+
 
   while(workers.length > 0){
        workers.forEach((worker) => {
@@ -731,7 +730,7 @@ function autoAssignWorkers() {
   });
 
   //assign remaining workers to any other room
-  // workersCopy = [...workers]; 
+  
   
   workers.forEach((worker) => {
     let possibleRooms = allZones.filter(room => canAssign(worker.id, room));
