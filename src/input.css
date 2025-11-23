@@ -12,6 +12,7 @@
   background-image: url('assets/OIG1.webp');
   min-height: 600px;
   height: 100%;
+  align-self: center;
 }
 
 .conference {
